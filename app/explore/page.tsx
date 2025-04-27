@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -8,116 +8,40 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge"
 import { Search } from "lucide-react"
 
-// Sample knowledge objects data
-const knowledgeObjects = [
-  {
-    id: "ko-1",
-    title: "Introduction to Python for Data Science",
-    section: "Programming Fundamentals",
-    level: "Beginner",
-    overview: "Learn the basics of Python programming for data science applications.",
-    tags: ["Python", "Programming", "Basics"],
-  },
-  {
-    id: "ko-2",
-    title: "Data Cleaning and Preprocessing",
-    section: "Data Preparation",
-    level: "Beginner",
-    overview: "Master essential techniques for cleaning and preparing data for analysis.",
-    tags: ["Data Cleaning", "Pandas", "Preprocessing"],
-  },
-  {
-    id: "ko-3",
-    title: "Exploratory Data Analysis",
-    section: "Data Analysis",
-    level: "Intermediate",
-    overview: "Learn how to explore and visualize data to extract meaningful insights.",
-    tags: ["EDA", "Visualization", "Analysis"],
-  },
-  {
-    id: "ko-4",
-    title: "Statistical Inference",
-    section: "Statistics",
-    level: "Intermediate",
-    overview: "Understand key concepts in statistical inference and hypothesis testing.",
-    tags: ["Statistics", "Hypothesis Testing", "Inference"],
-  },
-  {
-    id: "ko-5",
-    title: "Machine Learning Fundamentals",
-    section: "Machine Learning",
-    level: "Intermediate",
-    overview: "Introduction to core machine learning concepts, algorithms, and workflows.",
-    tags: ["ML", "Algorithms", "Supervised Learning"],
-  },
-  {
-    id: "ko-6",
-    title: "Deep Learning with Neural Networks",
-    section: "Deep Learning",
-    level: "Advanced",
-    overview: "Explore neural network architectures and deep learning applications.",
-    tags: ["Deep Learning", "Neural Networks", "TensorFlow"],
-  },
-  {
-    id: "ko-7",
-    title: "Natural Language Processing",
-    section: "NLP",
-    level: "Advanced",
-    overview: "Learn techniques for processing and analyzing text data.",
-    tags: ["NLP", "Text Mining", "Language Models"],
-  },
-  {
-    id: "ko-8",
-    title: "Time Series Analysis",
-    section: "Specialized Analysis",
-    level: "Advanced",
-    overview: "Methods and models for analyzing time-dependent data.",
-    tags: ["Time Series", "Forecasting", "ARIMA"],
-  },
-  {
-    id: "ko-9",
-    title: "Data Visualization Best Practices",
-    section: "Data Visualization",
-    level: "Intermediate",
-    overview: "Learn principles and techniques for effective data visualization.",
-    tags: ["Visualization", "Matplotlib", "Seaborn"],
-  },
-  {
-    id: "ko-10",
-    title: "Big Data Processing with Spark",
-    section: "Big Data",
-    level: "Advanced",
-    overview: "Process and analyze large-scale datasets using Apache Spark.",
-    tags: ["Big Data", "Spark", "Distributed Computing"],
-  },
-  {
-    id: "ko-11",
-    title: "SQL for Data Scientists",
-    section: "Data Management",
-    level: "Beginner",
-    overview: "Learn SQL fundamentals for data extraction and manipulation.",
-    tags: ["SQL", "Databases", "Data Extraction"],
-  },
-  {
-    id: "ko-12",
-    title: "Data Ethics and Privacy",
-    section: "Professional Skills",
-    level: "Intermediate",
-    overview: "Understand ethical considerations and privacy concerns in data science.",
-    tags: ["Ethics", "Privacy", "Responsible AI"],
-  },
-]
+type KnowledgeObject = {
+  id: string
+  title: string
+  section: string
+  level: string
+  overview: string
+  tags: string[]
+}
 
 export default function ExplorePage() {
+  const [knowledgeObjects, setKnowledgeObjects] = useState<KnowledgeObject[]>([])
   const [searchTitle, setSearchTitle] = useState("")
   const [selectedLevel, setSelectedLevel] = useState<string>("")
   const [searchOverview, setSearchOverview] = useState("")
 
+  useEffect(() => {
+    // Fetch knowledge objects from your FastAPI backend
+    const fetchKnowledgeObjects = async () => {
+      try {
+        const res = await fetch("https://data-science-learning-accelerator.onrender.com/get-knowledge-objects")
+        const data = await res.json()
+        setKnowledgeObjects(data.data)  // Assuming FastAPI returns { "data": [...] }
+      } catch (error) {
+        console.error("Failed to fetch knowledge objects", error)
+      }
+    }
+
+    fetchKnowledgeObjects()
+  }, [])
+
   const filteredKOs = knowledgeObjects.filter((ko) => {
     const matchesTitle = ko.title.toLowerCase().includes(searchTitle.toLowerCase())
-    const matchesLevel = selectedLevel ? ko.level === selectedLevel : true
+    const matchesLevel = selectedLevel && selectedLevel !== "all" ? ko.level === selectedLevel : true
     const matchesOverview = ko.overview.toLowerCase().includes(searchOverview.toLowerCase())
-
     return matchesTitle && matchesLevel && matchesOverview
   })
 
@@ -137,6 +61,7 @@ export default function ExplorePage() {
   return (
     <div className="container py-10">
       <div className="flex flex-col space-y-6">
+        {/* Search Bar and Filters */}
         <div className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Explore Knowledge Objects
@@ -146,7 +71,7 @@ export default function ExplorePage() {
           </p>
         </div>
 
-        {/* Search and Filters */}
+        {/* Filters */}
         <div className="grid gap-4 md:grid-cols-3">
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -210,3 +135,4 @@ export default function ExplorePage() {
     </div>
   )
 }
+
