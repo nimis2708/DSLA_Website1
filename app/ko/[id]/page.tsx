@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import Papa from "papaparse";
 import { notFound } from "next/navigation";
+import mammoth from "mammoth";
 
 // Structure of each tile
 type KnowledgeObject = {
@@ -26,6 +27,13 @@ async function getData(): Promise<KnowledgeObject[]> {
   return result.data;
 }
 
+// Helper to load and convert .docx to HTML
+async function convertDocxToHtml(filePath: string): Promise<string> {
+  const arrayBuffer = fs.readFileSync(filePath);
+  const { value } = await mammoth.convertToHtml({ arrayBuffer });
+  return value;
+}
+
 // This is your page for individual tile view
 export default async function KnowledgeDetailPage({
   params,
@@ -36,6 +44,13 @@ export default async function KnowledgeDetailPage({
   const item = data.find((d) => d.id === params.id);
 
   if (!item) return notFound();
+
+  // Load .docx if specified in the content
+  let contentHtml = item.content;
+  if (item.github_path.endsWith(".docx")) {
+    const docxPath = path.join(process.cwd(), "public", item.github_path);
+    contentHtml = await convertDocxToHtml(docxPath);
+  }
 
   const tags = item.tags.split(",").map((t) => t.trim()).filter(Boolean);
 
@@ -62,7 +77,7 @@ export default async function KnowledgeDetailPage({
 
         <div
           className="prose prose-sm sm:prose lg:prose-lg max-w-none"
-          dangerouslySetInnerHTML={{ __html: item.content }}
+          dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
       </div>
     </div>
