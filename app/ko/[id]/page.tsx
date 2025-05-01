@@ -11,13 +11,13 @@ interface KnowledgeObject {
   level: string;
   overview: string;
   tags: string[];
-  html?: string;
-  raw_text?: string;
+  github_path: string;
 }
 
 export default function KnowledgeObjectDetail() {
   const { id } = useParams();
   const [ko, setKo] = useState<KnowledgeObject | null>(null);
+  const [content, setContent] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function KnowledgeObjectDetail() {
         const matched = data.find((item) => item.id === id);
 
         if (matched) {
-          const processed = {
+          const processed: KnowledgeObject = {
             id: matched.id,
             title: matched.title,
             section: matched.section,
@@ -43,10 +43,16 @@ export default function KnowledgeObjectDetail() {
             tags: typeof matched.tags === "string"
               ? matched.tags.split(",").map((tag: string) => tag.trim())
               : [],
-            html: matched.html,
-            raw_text: matched.raw_text,
+            github_path: matched.github_path,
           };
           setKo(processed);
+
+          if (processed.github_path) {
+            const githubRawUrl = `https://raw.githubusercontent.com/nimis2708/Data-Science-Learning-Accelerator/main/${processed.github_path}`;
+            const fileRes = await fetch(githubRawUrl);
+            const fileText = await fileRes.text();
+            setContent(fileText);
+          }
         }
       } catch (err) {
         console.error("Error loading KO detail:", err);
@@ -77,10 +83,14 @@ export default function KnowledgeObjectDetail() {
           ))}
         </div>
       )}
-      {ko.html ? (
-        <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: ko.html }} />
+      {content ? (
+        content.trim().startsWith("<") ? (
+          <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
+        ) : (
+          <pre className="whitespace-pre-wrap">{content}</pre>
+        )
       ) : (
-        <pre className="whitespace-pre-wrap">{ko.raw_text}</pre>
+        <p>No content available from GitHub.</p>
       )}
     </div>
   );
