@@ -30,10 +30,10 @@ async function getData(): Promise<KnowledgeObject[]> {
 export default async function KnowledgeDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: { id: string };
 }) {
   const data = await getData();
-  const item = data.find((d) => d.id === params.slug);
+  const item = data.find((d) => d.id === params.id);
 
   if (!item) return notFound();
 
