@@ -1,1 +1,126 @@
-[]
+[
+  {
+    "id": "ko-1",
+    "title": "Azure Machine Learning Intermediate",
+    "section": "Professional Skills,Intermediate",
+    "level": "Beginner",
+    "overview": "Learn Azure Machine Learning Intermediate in data science",
+    "tags": [
+      "Algorithm",
+      "API",
+      "Big Data"
+    ],
+    "github_path": "Azure Machine Learning Intermediate.docx"
+  },
+  {
+    "id": "ko-2",
+    "title": "Aws Security  Best Practices For Data Science Projects (1)",
+    "section": "Professional Skills,Intermediate",
+    "level": "Beginner",
+    "overview": "Learn Aws Security  Best Practices For Data Science Projects (1) in data science",
+    "tags": [
+      "Dataset"
+    ],
+    "github_path": "AWS Security_ Best Practices for Data Science Projects (1).docx"
+  },
+  {
+    "id": "ko-3",
+    "title": "Data Types And Data Structures Data Structures Lists, Dictionaries,Tuples",
+    "section": "Professional Skills,Intermediate",
+    "level": "Beginner",
+    "overview": "Learn Data Types And Data Structures Data Structures Lists, Dictionaries,Tuples in data science",
+    "tags": [
+      "Data Structure",
+      "Python"
+    ],
+    "github_path": "Data Types and Data Structures-Data Structures Lists, Dictionaries,Tuples.md"
+  },
+  {
+    "id": "ko-4",
+    "title": "Database Design",
+    "section": "Professional Skills,Intermediate",
+    "level": "Beginner",
+    "overview": "Learn Database Design in data science",
+    "tags": [
+      "Database",
+      "Data Modeling",
+      "Normalization"
+    ],
+    "github_path": "Database Design.docx"
+  },
+  {
+    "id": "ko-5",
+    "title": "Understanding Polymorphism In Python",
+    "section": "Professional Skills,Intermediate",
+    "level": "Beginner",
+    "overview": "Learn Understanding Polymorphism In Python in data science",
+    "tags": [
+      "Python"
+    ],
+    "github_path": "Understanding Polymorphism in Python.md"
+  },
+  {
+    "id": "ko-6",
+    "title": "Knowledge Object  Sql Joins (Intermediate Level)",
+    "section": "Professional Skills,Intermediate",
+    "level": "Beginner",
+    "overview": "Learn Knowledge Object  Sql Joins (Intermediate Level) in data science",
+    "tags": [
+      "Database",
+      "Dataset",
+      "SQL"
+    ],
+    "github_path": "Knowledge Object_ SQL JOINS (Intermediate Level).docx"
+  },
+  {
+    "id": "ko-7",
+    "title": "Aggregation In Sql",
+    "section": "Professional Skills,Intermediate",
+    "level": "Beginner",
+    "overview": "Learn Aggregation In Sql in data science",
+    "tags": [
+      "Apache Spark",
+      "Big Data",
+      "Database"
+    ],
+    "github_path": "Aggregation in SQL.docx"
+  },
+  {
+    "id": "ko-8",
+    "title": "Data Types And Data Structures Handling Complex Data Types (Geospatial",
+    "section": "Professional Skills,Intermediate",
+    "level": "Beginner",
+    "overview": "Learn Data Types And Data Structures Handling Complex Data Types (Geospatial in data science",
+    "tags": [
+      "Computer Vision",
+      "Python"
+    ],
+    "github_path": "Data Types and Data Structures-Handling Complex Data Types (Geospatial.md"
+  },
+  {
+    "id": "ko-9",
+    "title": "Sql Window Functions",
+    "section": "Professional Skills,Intermediate",
+    "level": "Beginner",
+    "overview": "Learn Sql Window Functions in data science",
+    "tags": [
+      "Mode",
+      "R",
+      "SQL"
+    ],
+    "github_path": "SQL Window Functions.docx"
+  },
+  {
+    "id": "ko-10",
+    "title": "Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets",
+    "section": "Professional Skills,Intermediate",
+    "level": "Beginner",
+    "overview": "Learn Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets in data science",
+    "tags": [
+      "Bias",
+      "Confusion Matrix",
+      "Dataset"
+    ],
+    "github_path": "Model Evaluation and Deployment-Data Handling - Handling Imbalanced Datasets.md"
+  }
+]
