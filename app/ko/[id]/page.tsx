@@ -12,6 +12,7 @@ interface KnowledgeObject {
   overview: string;
   tags: string[];
   github_path: string;
+  file_type: string; // Added file_type to track whether the file is .docx or .md
 }
 
 export default function KnowledgeObjectDetail() {
@@ -45,6 +46,7 @@ export default function KnowledgeObjectDetail() {
               ? matched.tags.split(",").map((tag: string) => tag.trim())
               : [],
             github_path: matched.github_path,
+            file_type: matched.github_path.split('.').pop() || "", // Extract file type from the path
           };
           setKo(processed);
 
@@ -55,7 +57,17 @@ export default function KnowledgeObjectDetail() {
               throw new Error("Failed to fetch content from GitHub.");
             }
             const fileText = await fileRes.text();
-            setContent(fileText);
+
+            // If it's a markdown file, render it as HTML
+            if (processed.file_type === "md") {
+              setContent(fileText); // Raw markdown will be rendered by markdown parser
+            } else if (processed.file_type === "docx") {
+              // Handle .docx files (convert them to plain text)
+              const docText = await convertDocxToText(fileText);
+              setContent(docText);
+            } else {
+              setContent(fileText); // Fallback for any other content types (raw text or unsupported)
+            }
           }
         }
       } catch (err: any) {
@@ -68,6 +80,14 @@ export default function KnowledgeObjectDetail() {
 
     fetchKO();
   }, [id]);
+
+  // Convert .docx to text (you would need a more sophisticated approach to parsing docx)
+  async function convertDocxToText(docxText: string): Promise<string> {
+    // Since the .docx format is binary, you would need a library to handle it
+    // In a browser environment, you can use libraries like `mammoth.js` to handle DOCX
+    // Here's a simple placeholder approach for now
+    return docxText; // This is just a placeholder; replace with actual .docx parsing logic
+  }
 
   if (loading) return <div className="container py-10">Loading...</div>;
   if (error) return <div className="container py-10">{error}</div>;
@@ -90,7 +110,7 @@ export default function KnowledgeObjectDetail() {
         </div>
       )}
       {content ? (
-        content.trim().startsWith("<") ? (
+        ko.file_type === "md" ? (
           <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
         ) : (
           <pre className="whitespace-pre-wrap">{content}</pre>
