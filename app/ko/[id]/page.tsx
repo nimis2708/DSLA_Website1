@@ -5,7 +5,7 @@ import mammoth from "mammoth";
 import { notFound } from "next/navigation";
 
 // Structure of each tile
-type KnowledgeObject = {
+export type KnowledgeObject = {
   id: string;
   title: string;
   section: string;
@@ -23,45 +23,36 @@ async function getData(): Promise<KnowledgeObject[]> {
   return Papa.parse<KnowledgeObject>(raw, { header: true, skipEmptyLines: true }).data;
 }
 
-// Convert a .docx on disk to HTML, with headings & bold preserved
+// Convert a .docx on disk to HTML, preserving headings & bold
 async function convertDocxToHtml(filePath: string): Promise<string> {
-  // read as Buffer
   const fileBuffer = fs.readFileSync(filePath);
-  // turn into ArrayBuffer view mammoth expects
   const arr = new Uint8Array(fileBuffer);
-  // map built‐in Heading styles to real <h1>, <h2>,…
+  // Map built-in Heading styles to real <h1>, <h2>,… and keep default mappings
   const styleMap = [
     "p[style-name='Heading 1'] => h1:fresh",
     "p[style-name='Heading 2'] => h2:fresh",
-    "p[style-name='Heading 3'] => h3:fresh",
+    "p[style-name='Heading 3'] => h3:fresh"
   ];
   const { value: html } = await mammoth.convertToHtml({
     arrayBuffer: arr.buffer,
     styleMap,
+    includeDefaultStyleMap: true // preserve default bold/italic mappings
   });
   return html;
 }
 
-export default async function KnowledgeDetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function KnowledgeDetailPage({ params }: { params: { id: string } }) {
   const data = await getData();
-  const item = data.find((d) => d.id === params.id);
+  const item = data.find(d => d.id === params.id);
   if (!item) return notFound();
 
-  // Decide which HTML to render
   let htmlContent = item.content;
-  if (item.github_path.toLowerCase().endsWith(".docx")) {
-    const docxFullPath = path.join(process.cwd(), "public", item.github_path);
+  if (item.github_path.toLowerCase().endsWith('.docx')) {
+    const docxFullPath = path.join(process.cwd(), 'public', item.github_path);
     htmlContent = await convertDocxToHtml(docxFullPath);
   }
 
-  const tags = item.tags
-    .split(",")
-    .map((t) => t.trim())
-    .filter(Boolean);
+  const tags = item.tags.split(',').map(t => t.trim()).filter(Boolean);
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
