@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import Papa from "papaparse";
+import React, { useEffect, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
-interface KnowledgeObject {
+interface KO {
   id: string;
   title: string;
   section: string;
@@ -12,106 +12,71 @@ interface KnowledgeObject {
   overview: string;
   tags: string[];
   github_path: string;
+  content: string;
 }
 
-export default function KnowledgeObjectDetail() {
-  const { id } = useParams();
-  const [ko, setKo] = useState<KnowledgeObject | null>(null);
-  const [content, setContent] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+export default function Page() {
+  const [data, setData] = useState<KO[]>([]);
+  const [selectedSection, setSelectedSection] = useState<string | null>(null);
+  const [selectedKO, setSelectedKO] = useState<KO | null>(null);
 
   useEffect(() => {
-    async function fetchKO() {
-      try {
-        const response = await fetch("/knowledge_objects.csv");
-        const reader = response.body?.getReader();
-        const result = await reader?.read();
-        const decoder = new TextDecoder("utf-8");
-        const csv = decoder.decode(result?.value);
-        const parsed = Papa.parse(csv, { header: true });
-        const data = parsed.data as any[];
+    fetch("/kofiles/combined_data.json")
+      .then((response) => response.json())
+      .then((jsonData: KO[]) => setData(jsonData))
+      .catch((error) => console.error("Error loading data:", error));
+  }, []);
 
-        const matched = data.find((item) => item.id === id);
+  const sections = Array.from(new Set(data.map((item) => item.section)));
 
-        if (matched) {
-          const processed: KnowledgeObject = {
-            id: matched.id,
-            title: matched.title,
-            section: matched.section,
-            level: matched.level,
-            overview: matched.overview,
-            tags: typeof matched.tags === "string"
-              ? matched.tags.split(",").map((tag: string) => tag.trim())
-              : [],
-            github_path: matched.github_path,
-          };
-          setKo(processed);
-
-          if (processed.github_path) {
-            const githubRawUrl = `https://raw.githubusercontent.com/nimis2708/Data-Science-Learning-Accelerator/main/${encodeURIComponent(processed.github_path)}`;
-            console.log("GitHub URL: ", githubRawUrl); // Debugging the URL
-
-            const fileRes = await fetch(githubRawUrl);
-            if (!fileRes.ok) {
-              console.error("Failed to fetch content: ", fileRes.statusText);
-              setContent("Failed to load content.");
-              return;
-            }
-
-            const fileText = await fileRes.text();
-
-            // Check file type by extension
-            const fileExtension = processed.github_path.split('.').pop()?.toLowerCase();
-
-            if (fileExtension === "md") {
-              // If .md file, parse Markdown to HTML using 'marked'
-              const htmlContent = marked(fileText);
-              setContent(htmlContent);
-            } else {
-              // If unknown type, set as plain text
-              setContent(fileText);
-            }
-          }
-        }
-      } catch (err) {
-        console.error("Error loading KO detail:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchKO();
-  }, [id]);
-
-  if (loading) return <div className="container py-10">Loading...</div>;
-  if (!ko) return <div className="container py-10">Knowledge Object not found.</div>;
+  const filteredData = selectedSection
+    ? data.filter((item) => item.section === selectedSection)
+    : data;
 
   return (
-    <div className="container py-10">
-      <h1 className="text-3xl font-bold mb-2">{ko.title}</h1>
-      <p className="text-sm text-muted-foreground mb-4">
-        Section: {ko.section} · Level: {ko.level}
-      </p>
-      <p className="mb-4">{ko.overview}</p>
-      {ko.tags?.length > 0 && (
-        <div className="flex gap-2 mb-4">
-          {ko.tags.map((tag) => (
-            <span key={tag} className="text-xs bg-gray-100 px-2 py-1 rounded">
-              {tag}
-            </span>
-          ))}
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Knowledge Objects</h1>
+
+      <div className="mb-4">
+        <span className="mr-2 font-semibold">Filter by Section:</span>
+        {sections.map((section) => (
+          <Button
+            key={section}
+            variant={selectedSection === section ? "default" : "outline"}
+            className="mr-2 mb-2"
+            onClick={() =>
+              setSelectedSection(selectedSection === section ? null : section)
+            }
+          >
+            {section}
+          </Button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {filteredData.map((item) => (
+          <Card
+            key={item.id}
+            className="cursor-pointer hover:shadow-lg transition"
+            onClick={() => setSelectedKO(item)}
+          >
+            <CardContent className="p-4">
+              <h2 className="text-lg font-semibold">{item.title}</h2>
+              <p className="text-sm text-gray-500">{item.level}</p>
+              <p className="mt-2 text-sm">{item.overview}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {selectedKO && (
+        <div className="mt-8 border rounded p-6 bg-white max-h-[600px] overflow-auto">
+          <h2 className="text-xl font-semibold mb-4">{selectedKO.title}</h2>
+          <div
+            className="prose"
+            dangerouslySetInnerHTML={{ __html: selectedKO.content }}
+          />
         </div>
-      )}
-      {content ? (
-        content.trim().startsWith("<") ? (
-          // Render HTML content (for .md files)
-          <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
-        ) : (
-          // Render plain text (for .docx or other files)
-          <pre className="whitespace-pre-wrap">{content}</pre>
-        )
-      ) : (
-        <p>No content available from GitHub.</p>
       )}
     </div>
   );
