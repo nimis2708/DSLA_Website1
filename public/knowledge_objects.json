@@ -13,18 +13,6 @@
   },
   {
     "id": "ko-2",
-    "title": "Model Validation   Stratified Crossvalidation (1)",
-    "section": "Professional Skills,Intermediate",
-    "level": "Beginner",
-    "overview": "Learn Model Validation   Stratified Crossvalidation (1) in data science",
-    "tags": [
-      "Cross-Validation",
-      "Dataset",
-      "Decision Tree"
-    ]
-  },
-  {
-    "id": "ko-3",
     "title": "Aws Security  Best Practices For Data Science Projects (1)",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -34,7 +22,7 @@
     ]
   },
   {
-    "id": "ko-4",
+    "id": "ko-3",
     "title": "Data Types And Data Structures Data Structures Lists, Dictionaries,Tuples",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -45,7 +33,7 @@
     ]
   },
   {
-    "id": "ko-5",
+    "id": "ko-4",
     "title": "Database Design",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -57,7 +45,7 @@
     ]
   },
   {
-    "id": "ko-6",
+    "id": "ko-5",
     "title": "Understanding Polymorphism In Python",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -67,7 +55,7 @@
     ]
   },
   {
-    "id": "ko-7",
+    "id": "ko-6",
     "title": "Handling Nulls In Sql  Coalesce, Ifnull",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -79,7 +67,7 @@
     ]
   },
   {
-    "id": "ko-8",
+    "id": "ko-7",
     "title": "Knowledge Object  Sql Joins (Intermediate Level)",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -91,7 +79,7 @@
     ]
   },
   {
-    "id": "ko-9",
+    "id": "ko-8",
     "title": "Aggregation In Sql",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -103,7 +91,7 @@
     ]
   },
   {
-    "id": "ko-10",
+    "id": "ko-9",
     "title": "Data Types And Data Structures Handling Complex Data Types (Geospatial",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -114,7 +102,7 @@
     ]
   },
   {
-    "id": "ko-11",
+    "id": "ko-10",
     "title": "Sql Window Functions",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -126,7 +114,7 @@
     ]
   },
   {
-    "id": "ko-12",
+    "id": "ko-11",
     "title": "Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
