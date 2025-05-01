@@ -36,19 +36,6 @@
   },
   {
     "id": "ko-4",
-    "title": "Database Design",
-    "section": "Professional Skills,Intermediate",
-    "level": "Beginner",
-    "overview": "Learn Database Design in data science",
-    "tags": [
-      "Database",
-      "Data Modeling",
-      "Normalization"
-    ],
-    "github_path": "Database Design.docx"
-  },
-  {
-    "id": "ko-5",
     "title": "Handling Nulls In Sql  Coalesce, Ifnull",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -61,7 +48,7 @@
     "github_path": "Handling NULLs in SQL_ COALESCE, IFNULL.docx"
   },
   {
-    "id": "ko-6",
+    "id": "ko-5",
     "title": "Knowledge Object  Sql Joins (Intermediate Level)",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -74,7 +61,7 @@
     "github_path": "Knowledge Object_ SQL JOINS (Intermediate Level).docx"
   },
   {
-    "id": "ko-7",
+    "id": "ko-6",
     "title": "Aggregation In Sql",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -87,7 +74,7 @@
     "github_path": "Aggregation in SQL.docx"
   },
   {
-    "id": "ko-8",
+    "id": "ko-7",
     "title": "Data Types And Data Structures Handling Complex Data Types (Geospatial",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -98,7 +85,7 @@
     "github_path": "Data Types and Data Structures-Handling Complex Data Types (Geospatial.md"
   },
   {
-    "id": "ko-9",
+    "id": "ko-8",
     "title": "Sql Window Functions",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -111,7 +98,7 @@
     "github_path": "SQL Window Functions.docx"
   },
   {
-    "id": "ko-10",
+    "id": "ko-9",
     "title": "Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
