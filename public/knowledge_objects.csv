@@ -1,15 +1,14 @@
 id,title,section,level,overview,tags
-ko-1,Azure Machine Learning Intermediate,"Professional Skills,Intermediate",Beginner,Learn Azure Machine Learning Intermediate in data science,"Algorithm, API, Big Data"
-ko-2,Model Validation   Stratified Crossvalidation (1),"Professional Skills,Intermediate",Beginner,Learn Model Validation   Stratified Crossvalidation (1) in data science,"Cross-Validation, Dataset, Decision Tree"
-ko-3,Aws Security  Best Practices For Data Science Projects (1),"Professional Skills,Intermediate",Beginner,Learn Aws Security  Best Practices For Data Science Projects (1) in data science,Dataset
-ko-4,"Data Types And Data Structures Data Structures Lists, Dictionaries,Tuples","Professional Skills,Intermediate",Beginner,"Learn Data Types And Data Structures Data Structures Lists, Dictionaries,Tuples in data science","Data Structure, Python"
-ko-5,"Using Row Number, Rank, And Dense Rank","Professional Skills,Intermediate",Beginner,"Learn Using Row Number, Rank, And Dense Rank in data science","Database, Dataset, Mode"
-ko-6,Model Evaluation And Deployment Data Handling Data Augmentation For Imbal,"Professional Skills,Intermediate",Beginner,Learn Model Evaluation And Deployment Data Handling Data Augmentation For Imbal in data science,"Bias, Dataset, Evaluation Metrics"
-ko-7,Database Design,"Professional Skills,Intermediate",Beginner,Learn Database Design in data science,"Database, Data Modeling, Normalization"
-ko-8,Understanding Polymorphism In Python,"Professional Skills,Intermediate",Beginner,Learn Understanding Polymorphism In Python in data science,Python
-ko-9,"Handling Nulls In Sql  Coalesce, Ifnull","Professional Skills,Intermediate",Beginner,"Learn Handling Nulls In Sql  Coalesce, Ifnull in data science","Database, Dataset, Decision Tree"
-ko-10,Knowledge Object  Sql Joins (Intermediate Level),"Professional Skills,Intermediate",Beginner,Learn Knowledge Object  Sql Joins (Intermediate Level) in data science,"Database, Dataset, SQL"
-ko-11,Aggregation In Sql,"Professional Skills,Intermediate",Beginner,Learn Aggregation In Sql in data science,"Apache Spark, Big Data, Database"
-ko-12,Data Types And Data Structures Handling Complex Data Types (Geospatial,"Professional Skills,Intermediate",Beginner,Learn Data Types And Data Structures Handling Complex Data Types (Geospatial in data science,"Computer Vision, Python"
-ko-13,Sql Window Functions,"Professional Skills,Intermediate",Beginner,Learn Sql Window Functions in data science,"Mode, R, SQL"
-ko-14,Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets,"Professional Skills,Intermediate",Beginner,Learn Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets in data science,"Bias, Confusion Matrix, Dataset"
+ko-1,Azure Machine Learning Intermediate,"Professional Skills,Intermediate",Beginner,Learn Azure Machine Learning Intermediate in data science,"['Algorithm', 'API', 'Big Data']"
+ko-2,Model Validation   Stratified Crossvalidation (1),"Professional Skills,Intermediate",Beginner,Learn Model Validation   Stratified Crossvalidation (1) in data science,"['Cross-Validation', 'Dataset', 'Decision Tree']"
+ko-3,Aws Security  Best Practices For Data Science Projects (1),"Professional Skills,Intermediate",Beginner,Learn Aws Security  Best Practices For Data Science Projects (1) in data science,['Dataset']
+ko-4,"Data Types And Data Structures Data Structures Lists, Dictionaries,Tuples","Professional Skills,Intermediate",Beginner,"Learn Data Types And Data Structures Data Structures Lists, Dictionaries,Tuples in data science","['Data Structure', 'Python']"
+ko-5,Model Evaluation And Deployment Data Handling Data Augmentation For Imbal,"Professional Skills,Intermediate",Beginner,Learn Model Evaluation And Deployment Data Handling Data Augmentation For Imbal in data science,"['Bias', 'Dataset', 'Evaluation Metrics']"
+ko-6,Database Design,"Professional Skills,Intermediate",Beginner,Learn Database Design in data science,"['Database', 'Data Modeling', 'Normalization']"
+ko-7,Understanding Polymorphism In Python,"Professional Skills,Intermediate",Beginner,Learn Understanding Polymorphism In Python in data science,['Python']
+ko-8,"Handling Nulls In Sql  Coalesce, Ifnull","Professional Skills,Intermediate",Beginner,"Learn Handling Nulls In Sql  Coalesce, Ifnull in data science","['Database', 'Dataset', 'Decision Tree']"
+ko-9,Knowledge Object  Sql Joins (Intermediate Level),"Professional Skills,Intermediate",Beginner,Learn Knowledge Object  Sql Joins (Intermediate Level) in data science,"['Database', 'Dataset', 'SQL']"
+ko-10,Aggregation In Sql,"Professional Skills,Intermediate",Beginner,Learn Aggregation In Sql in data science,"['Apache Spark', 'Big Data', 'Database']"
+ko-11,Data Types And Data Structures Handling Complex Data Types (Geospatial,"Professional Skills,Intermediate",Beginner,Learn Data Types And Data Structures Handling Complex Data Types (Geospatial in data science,"['Computer Vision', 'Python']"
+ko-12,Sql Window Functions,"Professional Skills,Intermediate",Beginner,Learn Sql Window Functions in data science,"['Mode', 'R', 'SQL']"
+ko-13,Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets,"Professional Skills,Intermediate",Beginner,Learn Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets in data science,"['Bias', 'Confusion Matrix', 'Dataset']"

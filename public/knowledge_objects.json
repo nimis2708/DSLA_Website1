@@ -5,7 +5,11 @@
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
     "overview": "Learn Azure Machine Learning Intermediate in data science",
-    "tags": "Algorithm, API, Big Data"
+    "tags": [
+      "Algorithm",
+      "API",
+      "Big Data"
+    ]
   },
   {
     "id": "ko-2",
@@ -13,7 +17,11 @@
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
     "overview": "Learn Model Validation   Stratified Crossvalidation (1) in data science",
-    "tags": "Cross-Validation, Dataset, Decision Tree"
+    "tags": [
+      "Cross-Validation",
+      "Dataset",
+      "Decision Tree"
+    ]
   },
   {
     "id": "ko-3",
@@ -21,7 +29,9 @@
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
     "overview": "Learn Aws Security  Best Practices For Data Science Projects (1) in data science",
-    "tags": "Dataset"
+    "tags": [
+      "Dataset"
+    ]
   },
   {
     "id": "ko-4",
@@ -29,86 +39,114 @@
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
     "overview": "Learn Data Types And Data Structures Data Structures Lists, Dictionaries,Tuples in data science",
-    "tags": "Data Structure, Python"
+    "tags": [
+      "Data Structure",
+      "Python"
+    ]
   },
   {
     "id": "ko-5",
-    "title": "Using Row Number, Rank, And Dense Rank",
-    "section": "Professional Skills,Intermediate",
-    "level": "Beginner",
-    "overview": "Learn Using Row Number, Rank, And Dense Rank in data science",
-    "tags": "Database, Dataset, Mode"
-  },
-  {
-    "id": "ko-6",
     "title": "Model Evaluation And Deployment Data Handling Data Augmentation For Imbal",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
     "overview": "Learn Model Evaluation And Deployment Data Handling Data Augmentation For Imbal in data science",
-    "tags": "Bias, Dataset, Evaluation Metrics"
+    "tags": [
+      "Bias",
+      "Dataset",
+      "Evaluation Metrics"
+    ]
   },
   {
-    "id": "ko-7",
+    "id": "ko-6",
     "title": "Database Design",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
     "overview": "Learn Database Design in data science",
-    "tags": "Database, Data Modeling, Normalization"
+    "tags": [
+      "Database",
+      "Data Modeling",
+      "Normalization"
+    ]
   },
   {
-    "id": "ko-8",
+    "id": "ko-7",
     "title": "Understanding Polymorphism In Python",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
     "overview": "Learn Understanding Polymorphism In Python in data science",
-    "tags": "Python"
+    "tags": [
+      "Python"
+    ]
   },
   {
-    "id": "ko-9",
+    "id": "ko-8",
     "title": "Handling Nulls In Sql  Coalesce, Ifnull",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
     "overview": "Learn Handling Nulls In Sql  Coalesce, Ifnull in data science",
-    "tags": "Database, Dataset, Decision Tree"
+    "tags": [
+      "Database",
+      "Dataset",
+      "Decision Tree"
+    ]
   },
   {
-    "id": "ko-10",
+    "id": "ko-9",
     "title": "Knowledge Object  Sql Joins (Intermediate Level)",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
     "overview": "Learn Knowledge Object  Sql Joins (Intermediate Level) in data science",
-    "tags": "Database, Dataset, SQL"
+    "tags": [
+      "Database",
+      "Dataset",
+      "SQL"
+    ]
   },
   {
-    "id": "ko-11",
+    "id": "ko-10",
     "title": "Aggregation In Sql",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
     "overview": "Learn Aggregation In Sql in data science",
-    "tags": "Apache Spark, Big Data, Database"
+    "tags": [
+      "Apache Spark",
+      "Big Data",
+      "Database"
+    ]
   },
   {
-    "id": "ko-12",
+    "id": "ko-11",
     "title": "Data Types And Data Structures Handling Complex Data Types (Geospatial",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
     "overview": "Learn Data Types And Data Structures Handling Complex Data Types (Geospatial in data science",
-    "tags": "Computer Vision, Python"
+    "tags": [
+      "Computer Vision",
+      "Python"
+    ]
   },
   {
-    "id": "ko-13",
+    "id": "ko-12",
     "title": "Sql Window Functions",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
     "overview": "Learn Sql Window Functions in data science",
-    "tags": "Mode, R, SQL"
+    "tags": [
+      "Mode",
+      "R",
+      "SQL"
+    ]
   },
   {
-    "id": "ko-14",
+    "id": "ko-13",
     "title": "Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
     "overview": "Learn Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets in data science",
-    "tags": "Bias, Confusion Matrix, Dataset"
+    "tags": [
+      "Bias",
+      "Confusion Matrix",
+      "Dataset"
+    ]
   }
 ]
