@@ -1,11 +1,1164 @@
-id,title,section,level,overview,tags,github_path
-ko-1,Azure Machine Learning Intermediate,"Professional Skills,Intermediate",Beginner,Learn Azure Machine Learning Intermediate in data science,"['Algorithm', 'API', 'Big Data']",Azure Machine Learning Intermediate.docx
-ko-2,Aws Security  Best Practices For Data Science Projects (1),"Professional Skills,Intermediate",Beginner,Learn Aws Security  Best Practices For Data Science Projects (1) in data science,['Dataset'],AWS Security_ Best Practices for Data Science Projects (1).docx
-ko-3,"Data Types And Data Structures Data Structures Lists, Dictionaries,Tuples","Professional Skills,Intermediate",Beginner,"Learn Data Types And Data Structures Data Structures Lists, Dictionaries,Tuples in data science",['R'],"Data Types and Data Structures-Data Structures Lists, Dictionaries,Tuples.md"
-ko-4,Database Design,"Professional Skills,Intermediate",Beginner,Learn Database Design in data science,"['Database', 'Data Modeling', 'Normalization']",Database Design.docx
-ko-5,"Handling Nulls In Sql  Coalesce, Ifnull","Professional Skills,Intermediate",Beginner,"Learn Handling Nulls In Sql  Coalesce, Ifnull in data science","['Database', 'Dataset', 'Decision Tree']","Handling NULLs in SQL_ COALESCE, IFNULL.docx"
-ko-6,Knowledge Object  Sql Joins (Intermediate Level),"Professional Skills,Intermediate",Beginner,Learn Knowledge Object  Sql Joins (Intermediate Level) in data science,"['Database', 'Dataset', 'SQL']",Knowledge Object_ SQL JOINS (Intermediate Level).docx
-ko-7,Aggregation In Sql,"Professional Skills,Intermediate",Beginner,Learn Aggregation In Sql in data science,"['Apache Spark', 'Big Data', 'Database']",Aggregation in SQL.docx
-ko-8,Data Types And Data Structures Handling Complex Data Types (Geospatial,"Professional Skills,Intermediate",Beginner,Learn Data Types And Data Structures Handling Complex Data Types (Geospatial in data science,['R'],Data Types and Data Structures-Handling Complex Data Types (Geospatial.md
-ko-9,Sql Window Functions,"Professional Skills,Intermediate",Beginner,Learn Sql Window Functions in data science,"['Mode', 'R', 'SQL']",SQL Window Functions.docx
-ko-10,Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets,"Professional Skills,Intermediate",Beginner,Learn Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets in data science,['R'],Model Evaluation and Deployment-Data Handling - Handling Imbalanced Datasets.md
+id,title,section,level,overview,tags,github_path,content
+ko-1,Azure Machine Learning Intermediate,"Professional Skills,Intermediate",Beginner,Learn Azure Machine Learning Intermediate in data science,"['Algorithm', 'API', 'Big Data']",Azure Machine Learning Intermediate.docx,"Azure Machine Learning<br>Overview: Azure Machine Learning is a cloud-based service provided by Microsoft that enables data scientists and machine learning engineers to build, train, deploy, and manage machine learning models at scale. With tools for automating model development and a broad array of pre-built algorithms, Azure ML simplifies the process of creating and deploying models. It integrates with other Azure services to provide a comprehensive machine learning pipeline, making it a powerful tool for enterprises and organizations working with large datasets.<br>Learning Objectives: By the end of this topic, learners will be able to:<br>Understand the architecture of Azure Machine Learning and its key components.<br>Build and train machine learning models using Azure ML Studio and SDK.<br>Deploy machine learning models as web services on Azure.<br>Utilize automated machine learning (AutoML) to automate the model development process.<br>Integrate Azure ML with other Azure services like Azure Databricks, Azure Data Lake, and Power BI.<br>Prerequisites: Before studying Azure Machine Learning, learners should:<br>Have a basic understanding of machine learning concepts, including supervised and unsupervised learning, model training, and evaluation.<br>Be familiar with Python and machine learning libraries like scikit-learn or TensorFlow.<br>Have experience with cloud computing or cloud-based services (e.g., Azure, AWS, or GCP).<br>Understand basic data engineering concepts like ETL (extract, transform, load) processes and data storage.<br>Key Concepts:<br>Azure Machine Learning Workspace:<br>Intermediate Level Explanation: The workspace is the central control plane where all resources related to Azure Machine Learning are stored. It contains datasets, experiments, pipelines, and models, offering a unified environment for managing the lifecycle of machine learning projects.
+Example: You can create and manage workspaces through the Azure portal or programmatically using the Azure SDK for Python.<br>Building Models with Azure ML Studio:<br>Intermediate Level Explanation: Azure ML Studio is a drag-and-drop tool that allows you to build machine learning pipelines without extensive coding. It includes pre-built modules for data transformation, model training, and evaluation.
+Example: Use the AutoML feature to automatically select the best model based on data characteristics, or manually configure pipelines for more control.
+python
+Copy code
+from azureml.core import Workspace<br>ws = Workspace.from_config()<br><br>Automated Machine Learning (AutoML):<br>Intermediate Level Explanation: Azure AutoML automates the process of applying machine learning to datasets, performing tasks like feature selection, model training, and hyperparameter tuning. It simplifies the process for non-experts but also allows experienced practitioners to explore and fine-tune model parameters.
+Example: AutoML can be used to identify the best algorithm for a classification task with minimal intervention, providing model explanations for interpretability.
+python
+Copy code
+from azureml.automl.core.forecasting_parameters import ForecastingParameters<br>from azureml.automl.core import AutoMLConfig<br><br>Model Deployment:<br>Advanced Level Explanation: Azure Machine Learning enables the deployment of models as web services that can be accessed by other applications via REST APIs. This allows for real-time predictions and seamless integration into business processes. Azure ML supports deploying models on Azure Kubernetes Service (AKS) or Azure Container Instances (ACI).
+Example: Use the Azure CLI or SDK to deploy a machine learning model and set up scalable endpoints.
+bash
+Copy code
+az ml model deploy --model my_model.pkl --service-name my_service --workspace my_workspace<br><br>Experimentation and Model Management:<br>Intermediate Level Explanation: Azure ML provides tools to manage experiments, track runs, and compare model performance across different iterations. This helps ensure reproducibility and accountability in model development.
+Example: Logging experiment metrics and models for later analysis and comparison.
+python
+Copy code
+run.log(""Accuracy"", np.float(accuracy))<br><br>Integrating with Other Azure Services:<br>Advanced Level Explanation: Azure ML can be integrated with other Azure services such as Azure Databricks, for big data analytics and model training, and Azure Data Lake, for large-scale data storage. This enables a seamless pipeline from raw data to deployed models.
+Example: Use Azure Databricks for data preprocessing and Azure ML for model training within the same workflow.<br>Graphs/Diagrams:<br>Azure ML Architecture Diagram: A flowchart that shows how data flows from Azure Data Lake to Azure ML for training and then to Azure Kubernetes Service for deployment.<br>AutoML Workflow Diagram: Visualize the steps AutoML takes to automate the model building process, from data preprocessing to hyperparameter tuning.<br>Model Deployment Architecture: Diagram showing how models deployed on AKS can be scaled and accessed via REST APIs for real-time predictions.<br>Hands-On Practice:<br>Beginner Task:<br>Create an Azure ML workspace and load a dataset. Explore AutoML to build a simple classification model.<br>Intermediate Task:<br>Build a machine learning pipeline in Azure ML Studio using a regression model. Train, evaluate, and deploy the model to Azure Kubernetes Service.<br>Advanced Task:<br>Integrate Azure Machine Learning with Azure Databricks to preprocess a large dataset, train a deep learning model, and deploy it using Azure ML’s SDK.<br>Quizzes/Assessments (Optional):<br>Intermediate-Level Quiz:<br>What are the key components of an Azure Machine Learning workspace?<br>How does AutoML simplify the machine learning process?<br>Advanced-Level Assessment: You’ve been tasked with deploying a machine learning model for fraud detection. Using Azure ML, design a pipeline that includes data ingestion, model training, and real-time deployment. Explain how you would optimize this for large datasets and scale.<br>Additional Notes:<br>Common Pitfalls:<br>Model Overfitting in AutoML: AutoML can sometimes overfit on small datasets, so it’s important to use cross-validation and other evaluation techniques.<br>Inefficient Resource Use: When using services like AKS for model deployment, it’s essential to monitor resource usage to avoid unnecessary costs.<br>Data Privacy and Compliance: When working with sensitive data, ensure that your Azure resources comply with regulations like GDPR or HIPAA.<br>Additional Learning Paths: For further exploration:<br>Study Azure Databricks to preprocess big data efficiently and integrate it into Azure ML pipelines.<br>Learn about MLOps (Machine Learning Operations) using Azure DevOps to automate and streamline the deployment and management of machine learning models.<br>Explore Azure Cognitive Services for pre-built machine learning APIs like computer vision or speech-to-text.<br>Resources:<br>Azure Machine Learning Documentation (Microsoft)<br>Azure ML SDK for Python<br>Azure Machine Learning for Data Scientists (Pluralsight)<br>Practical Azure Machine Learning (O'Reilly)<br>AutoML in Azure ML Studio<br>Search queries:<br>“Azure ML model deployment best practices”<br>“How to use AutoML in Azure Machine Learning”<br>“Azure Databricks integration with Azure ML”<br>“Azure ML workspace setup and configuration”<br>“Azure Machine Learning pipelines tutorial”<br>Community and Support:<br>Microsoft Azure Machine Learning Forum: https://techcommunity.microsoft.com/t5/azure-ai/ct-p/AzureAI<br>Stack Overflow Azure ML Tag: https://stackoverflow.com/questions/tagged/azure-machine-learning<br>Azure DevOps Community for learning about MLOps: https://devblogs.microsoft.com/devops/<br>Citations/References:<br>Microsoft. (2021). Azure Machine Learning Documentation. Retrieved from https://docs.microsoft.com/en-us/azure/machine-learning/<br>Chase, B. (2020). Practical Azure Machine Learning. O’Reilly Media.<br>Microsoft. (2021). Azure ML SDK for Python. Retrieved from https://docs.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py<br>"
+ko-2,Aws Security  Best Practices For Data Science Projects (1),"Professional Skills,Intermediate",Beginner,Learn Aws Security  Best Practices For Data Science Projects (1) in data science,['Dataset'],AWS Security_ Best Practices for Data Science Projects (1).docx,"AWS Security: Best Practices for Data Science Projects<br>Overview<br>AWS Security is crucial in data science projects to protect sensitive data, maintain compliance, and safeguard intellectual property. This knowledge object addresses AWS security services and best practices specifically for data science, covering topics like data encryption, secure access control, and compliance measures. Ensuring robust security practices minimizes risks and builds trust in cloud-based data science solutions.<br>Learning Objectives<br>Understand AWS security fundamentals, focusing on data protection and secure infrastructure.<br>Implement access control and encryption measures suited to data science workloads.<br>Learn to use AWS security tools to monitor, detect, and respond to security events in real time.<br>Prerequisites<br>Familiarity with AWS IAM, S3, and VPC basics.<br>Knowledge of general data security principles, such as encryption, access management, and network security.<br>Experience with common data science workflows and data handling practices.<br>Key Concepts<br>Security Fundamentals in AWS<br>Shared Responsibility Model: AWS secures the infrastructure, while users secure their data and applications.<br>Identity and Access Management (IAM): IAM policies and roles allow for controlled access to data and resources, with role-based permissions for secure data science environments.<br>Encryption Standards: AWS offers several encryption options (AES-256, server-side, and client-side encryption) to protect data both in transit and at rest.<br>Best Practices for Data Security in Data Science Projects<br>Data Encryption: Utilize AWS Key Management Service (KMS) to encrypt sensitive data stored in S3, RDS, and other AWS services. Apply SSL/TLS for data in transit.<br>Access Control: Implement principle of least privilege for IAM roles and policies to restrict access only to necessary users or applications.<br>Network Security: Use Virtual Private Cloud (VPC) with private subnets, security groups, and network access control lists (ACLs) to control access to sensitive data science infrastructure.<br>AWS Security Tools<br>Amazon GuardDuty: A threat detection service that uses machine learning to identify unusual patterns and potential threats.<br>AWS Shield: Protects applications against Distributed Denial of Service (DDoS) attacks, especially valuable for publicly accessible applications.<br>AWS CloudTrail: Logs and monitors account activity, ensuring traceability of user actions and supporting audit compliance.<br>Graphs/Diagrams<br>AWS Security Responsibility Model Diagram: Illustrate the shared security responsibilities between AWS and the user, showing examples of what each side is responsible for securing.<br>IAM Role Hierarchy and Permissions Chart: Show a sample IAM structure with restricted roles for data scientists, analysts, and admins.<br>VPC Security Architecture: A diagram of a secure VPC setup for data science, including private subnets, security groups, and restricted access points.<br>Hands-On Practice<br>Exercise 1: Configure IAM roles and policies for a data science project that grants specific access to S3 and EC2 resources.<br>Exercise 2: Encrypt an S3 bucket with AWS KMS and test access with different IAM roles to understand permissions.<br>Exercise 3: Use Amazon GuardDuty to simulate a threat detection scenario, monitoring for suspicious activities in an AWS account.<br>Quizzes/Assessments (Optional)<br>Multiple Choice Quiz: Questions on AWS security principles, IAM best practices, and encryption standards.<br>Scenario-Based Assessment: Given a dataset stored in S3 with strict confidentiality requirements, outline a security strategy covering IAM, VPC setup, and GuardDuty monitoring.<br>Additional Notes<br>Common Pitfalls: Overly permissive IAM roles can lead to data exposure; avoid using root credentials for routine tasks.<br>Efficiency Tips: Regularly review IAM roles and policies to ensure minimal access, and use automated monitoring tools for continuous security.<br>Additional Learning Paths<br>Courses: ""AWS Security Essentials"" on Coursera, ""AWS Security Best Practices"" on Pluralsight.<br>Certifications: AWS Certified Security – Specialty, AWS Certified Solutions Architect – Associate.<br>Resources<br>Documentation: AWS IAM Documentation, AWS Key Management Service Documentation.<br>Blogs/Articles: ""Securing Your Data Science Workloads on AWS"" on Towards Data Science, ""Data Protection with AWS Security"" on AWS Blog.<br>Books: ""AWS Security Best Practices"" by Zeal Vora, ""Practical Cloud Security"" by Chris Dotson.<br>Community and Support<br>Online Forums: AWS Security Forums, Cloud Security Alliance Community.<br>Networking Groups: AWS User Groups, Cloud Security Meetup.<br>Citations/References<br>Amazon Web Services. (n.d.). AWS IAM Documentation. Retrieved from https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html<br>Vora, Z. (2020). AWS Security Best Practices. Packt Publishing.<br>"
+ko-3,"Data Types And Data Structures Data Structures Lists, Dictionaries,Tuples","Professional Skills,Intermediate",Beginner,"Learn Data Types And Data Structures Data Structures Lists, Dictionaries,Tuples in data science","['Data Structure', 'Feature', 'Python']","Data Types and Data Structures-Data Structures Lists, Dictionaries,Tuples.md","<p><strong>Section:</strong> Data Types and Data Structures</p>
+<p>Data Structures: Lists, Dictionaries, Tuples</p>
+<p><strong>Level</strong>: Beginner</p>
+<h3><strong>Overview</strong></h3>
+<p>Data structures are essential in programming for organizing, storing,
+and manipulating data efficiently. Python provides versatile built-in
+data structures, including lists, dictionaries, and tuples, which cater
+to different use cases. Lists are ordered and mutable, dictionaries
+store data as key-value pairs, and tuples are immutable sequences.
+Understanding these structures and their operations enables developers
+to write clean, efficient, and scalable code.</p>
+<h3><strong>Learning Objectives</strong></h3>
+<p>By the end of this module, you will be able to:</p>
+<ul>
+<li>
+<p>Define and describe lists, dictionaries, and tuples.</p>
+</li>
+<li>
+<p>Understand the syntax, characteristics, and use cases for each data
+    structure.</p>
+</li>
+<li>
+<p>Perform basic operations like addition, deletion, and iteration.</p>
+</li>
+<li>
+<p>Apply these structures to solve real-world problems.</p>
+</li>
+</ul>
+<h3><strong>Prerequisites</strong></h3>
+<p>To fully engage with this material, you should have:</p>
+<ul>
+<li>
+<p>A basic understanding of Python syntax.</p>
+</li>
+<li>
+<p>Familiarity with variables and data types.</p>
+</li>
+</ul>
+<h3><strong>Key Concepts</strong></h3>
+<h4><strong>1. Lists</strong></h4>
+<p><strong>Definition</strong>: A list is an ordered, mutable (modifiable) collection of
+elements that can store items of mixed data types.</p>
+<p><strong>Key Characteristics</strong>:</p>
+<ul>
+<li>
+<p><strong>Ordered</strong>: Elements maintain the sequence in which they are added.</p>
+</li>
+<li>
+<p><strong>Mutable</strong>: You can modify, add, or remove elements.</p>
+</li>
+<li>
+<p><strong>Heterogeneous</strong>: Can store mixed data types, including other
+    lists.</p>
+</li>
+</ul>
+<p><strong>Syntax</strong>:</p>
+<p>python</p>
+<p>Copy code</p>
+<p>my_list = [1, \""apple\"", 3.14, True]</p>
+<p><strong>Common Operations</strong>:</p>
+<ul>
+<li><strong>Access elements</strong>:</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>print(my_list[0]) # Output: 1</p>
+<ul>
+<li><strong>Add elements</strong>:</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>my_list.append(\""banana\"") # Adds \'banana\' at the end</p>
+<ul>
+<li><strong>Remove elements</strong>:</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>my_list.remove(3.14) # Removes 3.14 from the list</p>
+<ul>
+<li><strong>Iterate through a list</strong>:</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>for item in my_list:\
+print(item)</p>
+<p><strong>Use Cases</strong>:</p>
+<ul>
+<li>Storing sequences, such as user inputs, to-do lists, or collections
+    of data for processing.</li>
+</ul>
+<h4><strong>2. Dictionaries</strong></h4>
+<p><strong>Definition</strong>: A dictionary is an unordered collection of key-value
+pairs where keys are unique and immutable, and values can be of any
+type.</p>
+<p><strong>Key Characteristics</strong>:</p>
+<ul>
+<li>
+<p><strong>Key-Value Pairs</strong>: Data is stored in pairs, allowing efficient
+    lookups.</p>
+</li>
+<li>
+<p><strong>Unordered</strong>: Does not guarantee any order of elements (until
+    Python 3.7, where insertion order is preserved).</p>
+</li>
+<li>
+<p><strong>Mutable</strong>: Keys cannot be changed, but values can be updated or
+    removed.</p>
+</li>
+</ul>
+<p><strong>Syntax</strong>:</p>
+<p>python</p>
+<p>Copy code</p>
+<p>my_dict = {\""name\"": \""Alice\"", \""age\"": 25, \""city\"": \""New York\""}</p>
+<p><strong>Common Operations</strong>:</p>
+<ul>
+<li><strong>Access values by key</strong>:</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>print(my_dict[\""name\""]) # Output: \""Alice\""</p>
+<ul>
+<li><strong>Add or update key-value pairs</strong>:</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>my_dict[\""age\""] = 26 # Updates \'age\' to 26\
+my_dict[\""country\""] = \""USA\"" # Adds a new key-value pair</p>
+<ul>
+<li><strong>Remove a key-value pair</strong>:</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>del my_dict[\""city\""]</p>
+<ul>
+<li><strong>Iterate through a dictionary</strong>:</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>for key, value in my_dict.items():\
+print(f\""{key}: {value}\"")</p>
+<p><strong>Use Cases</strong>:</p>
+<ul>
+<li>Representing structured data, such as student profiles, JSON data,
+    or lookup tables.</li>
+</ul>
+<h4><strong>3. Tuples</strong></h4>
+<p><strong>Definition</strong>: A tuple is an ordered, immutable sequence of elements,
+often used for fixed collections of items.</p>
+<p><strong>Key Characteristics</strong>:</p>
+<ul>
+<li>
+<p><strong>Ordered</strong>: Elements maintain their sequence.</p>
+</li>
+<li>
+<p><strong>Immutable</strong>: Once created, elements cannot be modified.</p>
+</li>
+<li>
+<p><strong>Heterogeneous</strong>: Can store mixed data types, similar to lists.</p>
+</li>
+</ul>
+<p><strong>Syntax</strong>:</p>
+<p>python</p>
+<p>Copy code</p>
+<p>my_tuple = (1, \""banana\"", 3.14)</p>
+<p><strong>Common Operations</strong>:</p>
+<ul>
+<li><strong>Access elements</strong>:</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>print(my_tuple[1]) # Output: \""banana\""</p>
+<ul>
+<li><strong>Check membership</strong>:</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>print(\""banana\"" in my_tuple) # Output: True</p>
+<ul>
+<li><strong>Iterate through a tuple</strong>:</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>for item in my_tuple:\
+print(item)</p>
+<ul>
+<li><strong>Convert to a list for modification</strong>:</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>modifiable_list = list(my_tuple)\
+modifiable_list.append(42)</p>
+<p><strong>Use Cases</strong>:</p>
+<ul>
+<li>Storing immutable collections, such as coordinates, configuration
+    constants, or fixed data.</li>
+</ul>
+<h3><strong>Comparative Analysis</strong></h3>
+<hr />
+<p><strong>Feature</strong>      <strong>Lists</strong>      <strong>Dictionaries</strong>        <strong>Tuples</strong></p>
+<hr />
+<p>Ordered          Yes            No (before Python 3.7)  Yes</p>
+<p>Mutable          Yes            Yes                     No</p>
+<p>Key-Value        No             Yes                     No
+  Pairing                                                 </p>
+<p>Heterogeneous    Yes            Keys: No, Values: Yes   Yes</p>
+<p>Use Case         Sequential     Structured, key-based   Immutable groups
+                   data           data                    </p>
+<hr />
+<h3><strong>Hands-On Practice</strong></h3>
+<ol>
+<li><strong>Exercise 1 (Easy)</strong>: Create a list of fruits, add a fruit, and
+    remove one.</li>
+</ol>
+<p>python</p>
+<p>Copy code</p>
+<p>fruits = [\""apple\"", \""banana\"", \""cherry\""]\
+fruits.append(\""orange\"")\
+fruits.remove(\""banana\"")\
+print(fruits)</p>
+<ol>
+<li><strong>Exercise 2 (Moderate)</strong>: Create a dictionary of students and their
+    grades. Update a grade and add a new student.</li>
+</ol>
+<p>python</p>
+<p>Copy code</p>
+<p>students = {\""Alice\"": \""A\"", \""Bob\"": \""B\"", \""Charlie\"": \""A\""}\
+students[\""Bob\""] = \""A+\""\
+students[\""David\""] = \""B\""\
+print(students)</p>
+<ol>
+<li><strong>Exercise 3 (Challenging)</strong>: Create a tuple of coordinates (x,
+    y, z) and write a function to calculate the distance from the
+    origin.</li>
+</ol>
+<p>python</p>
+<p>Copy code</p>
+<p>import math\
+coords = (3, 4, 5)\
+\
+def distance_from_origin(coords):\
+return math.sqrt(coords[0]**2 + coords[1]**2 +
+coords[2]**2)\
+\
+print(distance_from_origin(coords)) # Output: 7.071</p>
+<ol>
+<li><strong>Exercise 4 (Challenging)</strong>: Combine these data structures: Create
+    a dictionary where keys are tuples (coordinates), and values are
+    lists of objects located there.</li>
+</ol>
+<p>python</p>
+<p>Copy code</p>
+<p>locations = {\
+(0, 0): [\""tree\"", \""bench\""],\
+(1, 2): [\""car\"", \""lamp\""],\
+}\
+locations[(2, 3)] = [\""house\""]\
+print(locations)</p>
+<h3><strong>Quiz: Test Your Understanding</strong></h3>
+<ol>
+<li>
+<p><strong>Which data structure is best suited for key-value storage?</strong></p>
+<p>a.  a) List</p>
+<p>b.  b) Dictionary</p>
+<p>c.  c) Tuple</p>
+<p>d.  d) Set</p>
+</li>
+<li>
+<p><strong>True or False</strong>: Tuples are mutable.</p>
+</li>
+<li>
+<p><strong>What method is used to add an element to a list?</strong></p>
+<p>a.  a) append()</p>
+<p>b.  b) add()</p>
+<p>c.  c) insert()</p>
+<p>d.  d) update()</p>
+</li>
+<li>
+<p><strong>What happens when you try to modify a tuple?</strong></p>
+<p>a.  a) It gets modified.</p>
+<p>b.  b) It raises an error.</p>
+<p>c.  c) The change is ignored silently.</p>
+<p>d.  d) A new tuple is created.</p>
+</li>
+<li>
+<p><strong>Which of the following can serve as a dictionary key?</strong></p>
+<p>a.  a) A list</p>
+<p>b.  b) A dictionary</p>
+<p>c.  c) A tuple</p>
+<p>d.  d) A set</p>
+</li>
+</ol>
+<h3><strong>Quiz Answers</strong></h3>
+<ol>
+<li>
+<p><strong>b) Dictionary</strong></p>
+</li>
+<li>
+<p><strong>False</strong></p>
+</li>
+<li>
+<p><strong>a) append()</strong></p>
+</li>
+<li>
+<p><strong>b) It raises an error.</strong></p>
+</li>
+<li>
+<p><strong>c) A tuple</strong></p>
+</li>
+</ol>
+<h3><strong>Additional Learning Paths</strong></h3>
+<ul>
+<li>
+<p>Learn about advanced data structures like sets, stacks, and queues.</p>
+</li>
+<li>
+<p>Explore object-oriented programming to encapsulate data structures
+    in classes.</p>
+</li>
+<li>
+<p>Study algorithms and their efficiency in manipulating lists,
+    dictionaries, and tuples.</p>
+</li>
+</ul>
+<h3><strong>Resources</strong></h3>
+<h4><strong>Documentation</strong></h4>
+<ul>
+<li>
+<p><a href=""https://docs.python.org/3/tutorial/datastructures.html#more-on-lists"">Python Official Documentation for
+    Lists</a></p>
+</li>
+<li>
+<p><a href=""https://docs.python.org/3/tutorial/datastructures.html#dictionaries"">Python Official Documentation for
+    Dictionaries</a></p>
+</li>
+<li>
+<p><a href=""https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences"">Python Official Documentation for
+    Tuples</a></p>
+</li>
+</ul>
+<h4><strong>Articles and Blogs</strong></h4>
+<ul>
+<li>
+<p><a href=""https://medium.com/@arun.verma8007/python-data-structures-56d4211ca5a7#:~:text=Tuple%20is%20immutable%20collection%20of,and%20doesn't%20contain%20duplicate.&amp;text=Set%20and%20Dictionary%20provide%20very%20good%20performance%20over%20other%20data%20structures."">\""Python Lists, Dictionaries, and Tuples
+    Explained\""</a></p>
+</li>
+<li>
+<p><a href=""https://medium.com/@dudhanirushi/data-structures-and-algorithms-in-python-a-comprehensive-guide-046bf45e9106#:~:text=Data%20structures%20determine%20how%20we,their%20implementation%20and%20use%20cases."">\""Understanding Python Data
+    Structures\""</a></p>
+</li>
+</ul>
+<h4><strong>Courses</strong></h4>
+<ul>
+<li><a href=""https://www.coursera.org/learn/python-data"">\""Python Data
+    Structures\""</a> on
+    Coursera</li>
+</ul>"
+ko-4,"Handling Nulls In Sql  Coalesce, Ifnull","Professional Skills,Intermediate",Beginner,"Learn Handling Nulls In Sql  Coalesce, Ifnull in data science","['Database', 'Dataset', 'Decision Tree']","Handling NULLs in SQL_ COALESCE, IFNULL.docx","Handling NULLs in SQL: COALESCE, IFNULL<br>Overview<br>Handling NULL values in SQL is critical for ensuring data integrity and consistency in queries. Functions like COALESCE and IFNULL help manage NULL values by providing default values or alternative expressions, avoiding potential errors or misinterpretations in results. These tools are vital for building robust SQL queries that handle incomplete or missing data effectively.<br><br>Learning Objectives<br>By the end of this topic, learners will be able to:<br>Understand the concept of NULL in SQL and its implications.<br>Use the COALESCE function to replace NULL with the first non-NULL value.<br>Apply IFNULL (or ISNULL in some SQL dialects) for simpler substitution of NULL values.<br>Implement best practices for handling NULL values in data analysis and reporting.<br><br>Prerequisites<br>Learners should have a basic understanding of:<br>SQL fundamentals: SELECT, FROM, and WHERE clauses.<br>Data types and common operations in SQL.<br>Logical conditions (CASE statements or conditional operators).<br><br>Key Concepts<br>For Intermediate Learners:<br>1. Understanding NULL in SQL<br>NULL represents missing or undefined data.<br>Operations involving NULL often result in NULL (e.g., NULL + 5 = NULL).<br>Comparisons with NULL require special handling using IS NULL or IS NOT NULL.<br>2. The COALESCE Function<br>COALESCE returns the first non-NULL value from a list of arguments.<br>Syntax:
+sql
+Copy code
+COALESCE(value1, value2, ..., default_value)<br><br>Example:
+sql
+Copy code
+SELECT employee_id, COALESCE(bonus, 0) AS adjusted_bonus<br>FROM employee_salaries;<br>This query replaces NULL bonuses with 0.<br>3. The IFNULL Function<br>IFNULL is a simpler alternative to COALESCE available in certain databases (e.g., MySQL).<br>Syntax:
+sql
+Copy code
+IFNULL(expression, default_value)<br><br>Example:
+sql
+Copy code
+SELECT order_id, IFNULL(discount, 'No Discount') AS discount_status<br>FROM orders;<br><br>4. Handling Aggregates with NULL Values<br>Aggregation functions like SUM or AVG ignore NULL values.<br>Replace NULL with meaningful defaults to ensure accurate computations.<br>5. Comparison Between COALESCE and IFNULL<br>COALESCE supports multiple arguments and works across SQL dialects.<br>IFNULL is simpler but limited to two arguments and specific to certain databases.<br><br>For Advanced Learners:<br>Performance Implications:<br>COALESCE is more versatile but may be slightly slower than IFNULL for two arguments due to additional logic checks.<br>Choose functions based on database compatibility and performance needs.<br>Advanced Use Cases:<br>Combining COALESCE with subqueries:
+sql
+Copy code
+SELECT customer_id, COALESCE(<br>    (SELECT SUM(amount) FROM transactions WHERE customer_id = c.customer_id),<br>    0<br>) AS total_spent<br>FROM customers c;<br><br>Dynamic Handling of NULL Values:<br>Replace NULL based on context, such as locale-specific defaults:
+sql
+Copy code
+SELECT product_id, COALESCE(price_usd, price_eur * 1.1) AS adjusted_price<br>FROM products;<br><br><br>Graphs/Diagrams<br>Handling NULL Flow: A decision tree showing how COALESCE evaluates each argument.<br>Table Before and After COALESCE: Demonstrate transformations on a dataset with NULL values.<br>Aggregate Visualization: Compare results of SUM with and without handling NULL.<br><br>Hands-On Practice<br>Basic Exercises:<br>Replace NULL values in a column with a default value using COALESCE.<br>Use IFNULL to provide a placeholder for missing values in a query.<br>Intermediate Exercises:<br>Combine COALESCE with aggregate functions to calculate total sales, replacing missing values with 0.<br>Write a query that uses COALESCE to determine a fallback value based on multiple priority conditions.<br>Advanced Exercises:<br>Optimize a query to handle NULL dynamically based on regional defaults.<br>Create a report that uses COALESCE to standardize missing values across multiple columns.<br>–<br>Additional Notes<br>Common Misconceptions:<br>NULL is not the same as 0, an empty string, or false. It represents ""unknown.""<br>COALESCE and IFNULL do not modify the actual table data; they only impact query results.<br>Best Practices:<br>Use COALESCE for portability across databases.<br>Replace NULL values before performing calculations or creating reports.<br><br>Additional Learning Paths<br>Explore Conditional Logic in SQL with CASE statements for advanced handling.<br>Learn about Data Cleaning Techniques using SQL functions.<br>Study Data Normalization to minimize the occurrence of NULL values.<br><br>Resources<br>PostgreSQL Documentation: COALESCE<br>MySQL Documentation: IFNULL<br>SQLServerCentral: Handling NULL Values<br>Suggested Search Queries:<br>""COALESCE vs IFNULL in SQL""<br>""Replacing NULL values SQL examples""<br>""SQL NULL handling best practices""<br>""Aggregate functions with NULL handling""<br>""Data cleaning with SQL""<br><br>Community and Support<br>Stack Overflow: SQL NULL Handling<br>Reddit: r/SQL<br>SQLServerCentral Forums: Discuss practical use cases and optimization tips.<br><br>Citations/References<br>Celko, J. (2014). SQL for Smarties: Advanced SQL Programming. Morgan Kaufmann.<br>PostgreSQL Documentation: Functions and Operators. Available at: https://www.postgresql.org<br>"
+ko-5,Knowledge Object  Sql Joins (Intermediate Level),"Professional Skills,Intermediate",Beginner,Learn Knowledge Object  Sql Joins (Intermediate Level) in data science,"['Database', 'Dataset', 'SQL']",Knowledge Object_ SQL JOINS (Intermediate Level).docx,"Knowledge Object: SQL JOINS (Intermediate Level)<br>Title:<br>SQL JOINS for Intermediate Learners<br>Overview:<br>SQL JOINS are a fundamental concept in relational databases, allowing users to combine records from two or more tables based on a related column. As the complexity of database systems grows, understanding how to efficiently execute JOINS is critical for data retrieval and analysis. Intermediate learners will explore deeper concepts such as different JOIN types, optimization strategies, and use cases.<br>Learning Objectives:<br>By the end of this lesson, learners will be able to:<br>Understand the various types of SQL JOINS (INNER, LEFT, RIGHT, FULL, and CROSS JOIN)<br>Apply SQL JOINS to retrieve data from multiple tables efficiently<br>Optimize JOIN queries for performance<br>Troubleshoot common errors in JOIN statements<br>Write complex JOINS involving multiple tables<br>Prerequisites:<br>Basic understanding of SQL syntax and queries<br>Familiarity with database design concepts such as tables, primary keys, and foreign keys<br>Knowledge of SELECT statements and WHERE clauses<br>Key Concepts:<br>INNER JOIN: Returns records that have matching values in both tables.<br>LEFT JOIN (or LEFT OUTER JOIN): Returns all records from the left table, and the matched records from the right table. Unmatched records from the right table will contain NULL.<br>RIGHT JOIN (or RIGHT OUTER JOIN): Returns all records from the right table and the matched records from the left table.<br>FULL JOIN (or FULL OUTER JOIN): Combines the results of both LEFT and RIGHT JOINS, returning all records when there is a match in one of the tables.<br>CROSS JOIN: Returns the Cartesian product of the two tables, pairing each row from the first table with each row from the second table.<br>Graphs/Diagrams:<br>Possible Visual Representations:<br>Venn Diagrams: To visually represent the relationship between two tables for each type of JOIN.<br>Table Join Diagrams: Illustrating the result of different JOINS with sample data (e.g., Table A and Table B with common and unique rows).<br>Query Execution Plans: Show how SQL servers execute JOIN queries, emphasizing performance implications.<br>Hands-On Practice:<br>Write SQL queries to perform different JOINS (INNER, LEFT, RIGHT, FULL) on sample databases like a customer and order table.<br>Given a dataset with multiple related tables (e.g., employees, departments, projects), write complex JOIN statements to retrieve meaningful insights, such as total sales per department.<br>Optimize a slow-running JOIN query by analyzing the query plan and indexing strategies.<br>Additional Notes:<br>Common Mistakes: Missing or incorrect ON conditions can lead to unintended results or errors.<br>Optimization Tip: For large datasets, indexing the columns involved in the JOIN conditions can improve performance significantly.<br>Additional Learning Paths:<br>Advanced SQL Topics: Learn about window functions, CTEs (Common Table Expressions), and SQL subqueries.<br>Database Optimization: Study indexing, partitioning, and query optimization techniques to further improve JOIN query performance.<br>Courses: Take advanced SQL courses on platforms like Coursera, Udemy, or LinkedIn Learning.<br>Certifications: Consider certifications like Microsoft SQL Server or Oracle Database SQL Expert.<br>Resources:<br>SQL JOIN Documentation: W3Schools SQL JOINs<br>SQL Optimization Strategies: LearnSQL.com SQL Optimization<br>Case Study: Examine real-world cases from industry blogs on improving JOIN performance in large databases.<br>Community and Support:<br>SQL Online Forums: Stack Overflow SQL tag<br>Professional Networks: Join SQL-focused groups on LinkedIn for networking and knowledge sharing.<br>Conferences: Attend database conferences like SQLBits or PASS Summit for expert insights.<br>Citations/References:<br>Singh, D. (2020). SQL JOINS Explained: A Comprehensive Guide. Retrieved from [example.com].<br>Martin, A. (2019). Optimizing SQL Queries: Best Practices and Techniques.<br><br>"
+ko-6,Aggregation In Sql,"Professional Skills,Intermediate",Beginner,Learn Aggregation In Sql in data science,"['Apache Spark', 'Big Data', 'Database']",Aggregation in SQL.docx,"Aggregation in SQL<br>Overview: Aggregation in SQL refers to the process of summarizing large datasets by performing calculations such as sums, averages, counts, and more. It is essential for data analysis, reporting, and business intelligence, allowing users to derive insights from raw data. With growing data complexity, understanding advanced aggregation techniques is critical for handling modern database systems efficiently.<br>Learning Objectives: By the end of this topic, learners will be able to:<br>Understand fundamental aggregation operations like SUM(), AVG(), COUNT(), MIN(), MAX().<br>Implement aggregation with GROUP BY and HAVING clauses in SQL queries.<br>Optimize aggregation performance in large datasets.<br>Recognize the limitations and nuances of aggregation functions.<br>Apply advanced aggregation techniques using subqueries and window functions.<br>Prerequisites: Before engaging with this material, learners should have:<br>Basic understanding of SQL syntax and structure.<br>Familiarity with SELECT statements and basic SQL operations.<br>Knowledge of relational database design and data types.<br>Key Concepts:<br>Basic Aggregation Operations:<br>Beginner Level Explanation: Imagine you’re tallying up sales totals from different departments in a store. Aggregation functions help summarize this data. For example, SUM() adds up all the sales, while COUNT() shows how many transactions occurred.<br>Grouping Data with GROUP BY:<br>Intermediate Level Explanation: The GROUP BY clause allows you to segment data into distinct categories, where aggregation functions can be applied. For instance, calculating the average sales per department in a company would require grouping the sales data by department.<br>Example:
+sql
+Copy code
+SELECT department, AVG(sales) <br>FROM sales_data <br>GROUP BY department;<br><br>Filtering Aggregated Data with HAVING: While WHERE filters rows before aggregation, HAVING filters aggregated results. This becomes useful when you want to apply conditions on the summarized data itself.
+Example:
+sql
+Copy code
+SELECT department, SUM(sales) <br>FROM sales_data <br>GROUP BY department <br>HAVING SUM(sales) > 10000;<br><br>Advanced Aggregation: Subqueries and Window Functions:<br>Advanced Level Explanation: Subqueries in aggregation help when complex data manipulations are needed. Additionally, window functions like ROW_NUMBER() and RANK() allow you to perform aggregation over specific partitions of data without collapsing the rows.<br>Example with Window Function:
+sql
+Copy code
+SELECT department, sales, RANK() OVER (PARTITION BY department ORDER BY sales DESC) as rank<br>FROM sales_data;<br><br>Performance Optimization for Aggregation: Optimizing aggregations in large datasets requires indexing, understanding query execution plans, and leveraging materialized views. Techniques like parallel processing and partitioning can significantly enhance performance.<br>Graphs/Diagrams: If creating the graphs is not possible, consider the following approaches:<br>Data Flow Diagram: Show how data is grouped and aggregated in stages, illustrating the flow from raw data to aggregated results.<br>SQL Query Execution Plan: Visualize how a database executes an aggregation query, including indexing and parallel processing strategies.<br>Window Function Diagram: A flowchart showing how window functions partition data before applying aggregation.<br>Hands-On Practice:<br>Beginner Task: Write a query that calculates the total sales using the SUM() function for a given dataset.<br>Intermediate Task: Write a query that groups data by a category (e.g., department) and filters out groups with a sum below a certain threshold using the HAVING clause.<br>Advanced Task: Use a window function to rank sales within each department and identify the top-performing employees.<br>Quizzes/Assessments (Optional):<br>Intermediate-Level Quiz:<br>What’s the difference between WHERE and HAVING in an aggregation query?<br>Write a query that calculates the average salary of employees, grouped by department, and filter out departments where the average salary is below $50,000.<br>Advanced-Level Assessment: You are given a large dataset of product orders. Write an optimized SQL query to rank products based on total sales, grouped by region, and limit the results to only the top 3 products per region.<br>Additional Notes:<br>Common Pitfalls:<br>Misunderstanding the use of WHERE vs HAVING. Always apply HAVING after GROUP BY for filtering on aggregated data.<br>Performance bottlenecks can arise in large datasets without proper indexing or optimization techniques.<br>Additional Learning Paths: For further exploration:<br>Learn more about Window Functions in SQL.<br>Explore Advanced Query Optimization Techniques.<br>Study Big Data Aggregation Techniques in platforms like Apache Spark or Hadoop.<br>Resources:<br>SQL Aggregation Functions Documentation - PostgreSQL<br>Mastering SQL Window Functions<br>Database Optimization Strategies<br>Search queries:<br>“Advanced SQL aggregation functions and optimization”<br>“SQL group by vs partition by in window functions”<br>“How to optimize SQL queries for large datasets”<br>“Best practices for SQL query performance”<br>“SQL window functions tutorial for advanced learners”<br>Community and Support:<br>SQL Community Forum: https://www.sqlservercentral.com/<br>Stack Overflow SQL Tag: https://stackoverflow.com/questions/tagged/sql<br>Reddit SQL Learning Community: https://www.reddit.com/r/SQL/<br>Citations/References:<br>PostgreSQL Documentation. (n.d.). Aggregate Functions.<br>Ramakrishnan, R., & Gehrke, J. (2003). Database Management Systems (3rd ed.). McGraw-Hill.<br>SQL Performance Explained<br>"
+ko-7,Data Types And Data Structures Handling Complex Data Types (Geospatial,"Professional Skills,Intermediate",Beginner,Learn Data Types And Data Structures Handling Complex Data Types (Geospatial in data science,"['Computer Vision', 'Python']",Data Types and Data Structures-Handling Complex Data Types (Geospatial.md,"<p><strong>Section:</strong> Data Types and Data Structures</p>
+<p>Handling Complex Data Types (Geospatial, Audio, Video)</p>
+<p><strong>Level</strong>: Intermediate</p>
+<h3><strong>Overview</strong></h3>
+<p>Complex data types such as geospatial, audio, and video data require
+specialized techniques for processing, analyzing, and extracting
+meaningful insights. Geospatial data includes geographic coordinates and
+maps, audio data involves sound waveforms, and video data is a sequence
+of image frames. Handling these data types is crucial for tasks in areas
+like location-based services, speech recognition, and video analytics.</p>
+<h3><strong>Learning Objectives</strong></h3>
+<p>By the end of this module, you will be able to:</p>
+<ul>
+<li>
+<p>Define geospatial, audio, and video data and understand their
+    structures.</p>
+</li>
+<li>
+<p>Explore tools and libraries for working with these data types.</p>
+</li>
+<li>
+<p>Learn the theoretical basis for processing complex data types.</p>
+</li>
+<li>
+<p>Apply preprocessing techniques for geospatial, audio, and video
+    data.</p>
+</li>
+</ul>
+<h3><strong>Prerequisites</strong></h3>
+<p>To fully engage with this material, you should have:</p>
+<ul>
+<li>
+<p>A basic understanding of Python programming.</p>
+</li>
+<li>
+<p>Familiarity with NumPy and Pandas for handling numerical data.</p>
+</li>
+<li>
+<p>Knowledge of image processing concepts (for video data).</p>
+</li>
+</ul>
+<h3><strong>Key Concepts</strong></h3>
+<h4><strong>1. Geospatial Data</strong></h4>
+<p><strong>Definition</strong>: Geospatial data includes geographic or location-based
+information, such as latitude-longitude coordinates, polygons, and
+raster images of maps.</p>
+<p><strong>Formats</strong>:</p>
+<ul>
+<li>
+<p><strong>Vector Data</strong>: Points, lines, and polygons representing geographic
+    features.</p>
+</li>
+<li>
+<p><strong>Raster Data</strong>: Grid-based data like satellite imagery or heatmaps.</p>
+</li>
+</ul>
+<p><strong>Libraries and Tools</strong>:</p>
+<ul>
+<li><strong>Geopandas</strong>: For handling geospatial data in Pandas-like
+    DataFrames.</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>import geopandas as gpd\
+gdf = gpd.read_file(\""world_countries.shp\"") # Load shapefile\
+gdf.plot() # Plot geographic data</p>
+<ul>
+<li>
+<p><strong>Shapely</strong>: For geometric operations like calculating distances or
+    intersections.</p>
+</li>
+<li>
+<p><strong>Folium</strong>: For creating interactive maps.</p>
+</li>
+</ul>
+<p><strong>Common Operations</strong>:</p>
+<ul>
+<li>
+<p>Reading and visualizing geospatial data (e.g., shapefiles, GeoJSON).</p>
+</li>
+<li>
+<p>Calculating distances between points.</p>
+</li>
+<li>
+<p>Overlaying data on maps.</p>
+</li>
+</ul>
+<p><strong>Use Cases</strong>:</p>
+<ul>
+<li>
+<p>Location-based services (e.g., ride-hailing apps).</p>
+</li>
+<li>
+<p>Environmental analysis (e.g., tracking deforestation).</p>
+</li>
+<li>
+<p>Urban planning and logistics optimization.</p>
+</li>
+</ul>
+<h4><strong>2. Audio Data</strong></h4>
+<p><strong>Definition</strong>: Audio data represents sound information, often stored as
+waveforms, spectrograms, or encoded files like MP3 or WAV.</p>
+<p><strong>Structure</strong>:</p>
+<ul>
+<li>
+<p><strong>Waveform</strong>: Time-series data representing sound pressure levels
+    over time.</p>
+</li>
+<li>
+<p><strong>Spectrogram</strong>: Visual representation of frequencies over time.</p>
+</li>
+</ul>
+<p><strong>Libraries and Tools</strong>:</p>
+<ul>
+<li><strong>Librosa</strong>: For loading, processing, and analyzing audio files.</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>import librosa\
+y, sr = librosa.load(\""audio_file.wav\"", sr=22050) # Load audio file\
+librosa.display.waveshow(y, sr=sr) # Plot waveform</p>
+<ul>
+<li>
+<p><strong>Soundfile</strong>: For reading and writing audio files.</p>
+</li>
+<li>
+<p><strong>PyDub</strong>: For audio manipulation like slicing and concatenation.</p>
+</li>
+</ul>
+<p><strong>Common Operations</strong>:</p>
+<ul>
+<li>
+<p>Noise reduction and filtering.</p>
+</li>
+<li>
+<p>Extracting features like MFCCs (Mel Frequency Cepstral
+    Coefficients).</p>
+</li>
+<li>
+<p>Converting audio to text using Automatic Speech Recognition (ASR).</p>
+</li>
+</ul>
+<p><strong>Use Cases</strong>:</p>
+<ul>
+<li>
+<p>Speech recognition (e.g., virtual assistants).</p>
+</li>
+<li>
+<p>Audio classification (e.g., identifying genres).</p>
+</li>
+<li>
+<p>Audio enhancement (e.g., noise suppression).</p>
+</li>
+</ul>
+<h4><strong>3. Video Data</strong></h4>
+<p><strong>Definition</strong>: Video data consists of sequences of frames (images)
+accompanied by audio (optional). Videos are often stored in formats like
+MP4, AVI, or MKV.</p>
+<p><strong>Structure</strong>:</p>
+<ul>
+<li>
+<p><strong>Frames</strong>: A sequence of images representing the visual content of
+    the video.</p>
+</li>
+<li>
+<p><strong>Metadata</strong>: Additional information, such as frame rate or
+    resolution.</p>
+</li>
+</ul>
+<p><strong>Libraries and Tools</strong>:</p>
+<ul>
+<li><strong>OpenCV</strong>: For reading, processing, and analyzing video frames.</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>import cv2\
+cap = cv2.VideoCapture(\""video_file.mp4\"")\
+while cap.isOpened():\
+ret, frame = cap.read()\
+if not ret:\
+break\
+cv2.imshow(\""Frame\"", frame)\
+if cv2.waitKey(1) &amp; 0xFF == ord(\'q\'):\
+break\
+cap.release()\
+cv2.destroyAllWindows()</p>
+<ul>
+<li>
+<p><strong>MoviePy</strong>: For video editing and processing.</p>
+</li>
+<li>
+<p><strong>FFmpeg</strong>: For video conversion and manipulation.</p>
+</li>
+</ul>
+<p><strong>Common Operations</strong>:</p>
+<ul>
+<li>
+<p>Extracting frames and keyframes.</p>
+</li>
+<li>
+<p>Object detection and tracking.</p>
+</li>
+<li>
+<p>Generating summaries or highlights from video.</p>
+</li>
+</ul>
+<p><strong>Use Cases</strong>:</p>
+<ul>
+<li>
+<p>Video surveillance (e.g., detecting unusual activities).</p>
+</li>
+<li>
+<p>Content recommendation (e.g., tagging scenes for streaming
+    platforms).</p>
+</li>
+<li>
+<p>Autonomous driving (e.g., lane detection).</p>
+</li>
+</ul>
+<h3><strong>Hands-On Practice</strong></h3>
+<ol>
+<li><strong>Exercise 1 (Geospatial)</strong>: Load and visualize a GeoJSON file.</li>
+</ol>
+<p>python</p>
+<p>Copy code</p>
+<p>import geopandas as gpd\
+gdf = gpd.read_file(\""data.geojson\"")\
+gdf.plot()</p>
+<ol>
+<li><strong>Exercise 2 (Audio)</strong>: Load an audio file, generate its
+    spectrogram, and extract features.</li>
+</ol>
+<p>python</p>
+<p>Copy code</p>
+<p>import librosa\
+import librosa.display\
+y, sr = librosa.load(\""audio.wav\"")\
+librosa.display.specshow(librosa.amplitude_to_db(librosa.stft(y),
+ref=np.max))</p>
+<ol>
+<li><strong>Exercise 3 (Video)</strong>: Extract frames from a video and save them as
+    images.</li>
+</ol>
+<p>python</p>
+<p>Copy code</p>
+<p>import cv2\
+cap = cv2.VideoCapture(\""video.mp4\"")\
+frame_count = 0\
+while cap.isOpened():\
+ret, frame = cap.read()\
+if not ret:\
+break\
+cv2.imwrite(f\""frame_{frame_count}.jpg\"", frame)\
+frame_count += 1\
+cap.release()</p>
+<ol>
+<li><strong>Exercise 4 (Challenging)</strong>: Combine geospatial data with video
+    frames to track an object's movement on a map.</li>
+</ol>
+<h3><strong>Quiz: Test Your Understanding</strong></h3>
+<ol>
+<li>
+<p><strong>Which library is commonly used for geospatial data manipulation?</strong></p>
+<p>a.  a) OpenCV</p>
+<p>b.  b) Librosa</p>
+<p>c.  c) GeoPandas</p>
+<p>d.  d) NumPy</p>
+</li>
+<li>
+<p><strong>True or False</strong>: Spectrograms are used to visualize video data.</p>
+</li>
+<li>
+<p><strong>What is a common format for storing audio data?</strong></p>
+<p>a.  a) MP4</p>
+<p>b.  b) WAV</p>
+<p>c.  c) JSON</p>
+<p>d.  d) PNG</p>
+</li>
+<li>
+<p><strong>Which operation is typically performed on video data?</strong></p>
+<p>a.  a) Keyframe extraction</p>
+<p>b.  b) Noise filtering</p>
+<p>c.  c) Distance calculation</p>
+<p>d.  d) Spectrogram generation</p>
+</li>
+<li>
+<p><strong>Which of the following best describes geospatial data?</strong></p>
+<p>a.  a) Sequence of images</p>
+<p>b.  b) Location-based data</p>
+<p>c.  c) Time-series data</p>
+<p>d.  d) Frequency data</p>
+</li>
+</ol>
+<h3><strong>Quiz Answers</strong></h3>
+<ol>
+<li>
+<p><strong>c) GeoPandas</strong></p>
+</li>
+<li>
+<p><strong>False</strong></p>
+</li>
+<li>
+<p><strong>b) WAV</strong></p>
+</li>
+<li>
+<p><strong>a) Keyframe extraction</strong></p>
+</li>
+<li>
+<p><strong>b) Location-based data</strong></p>
+</li>
+</ol>
+<h3><strong>Additional Learning Paths</strong></h3>
+<ul>
+<li>
+<p><strong>Advanced Geospatial Analysis</strong>: Learn about spatial joins,
+    geocoding, and advanced mapping techniques.</p>
+<ul>
+<li><em>Recommended Course</em>: \""Geospatial Data Analysis with Python\""
+    on DataCamp.</li>
+</ul>
+</li>
+<li>
+<p><strong>Audio Signal Processing</strong>: Explore advanced techniques like speech
+    synthesis, pitch detection, and audio classification.</p>
+<ul>
+<li><em>Recommended Resource</em>: <a href=""https://www.coursera.org/learn/audio-signal-processing"">\""Audio Signal Processing for Machine
+    Learning\""</a>
+    on Coursera.</li>
+</ul>
+</li>
+<li>
+<p><strong>Video Analytics</strong>: Delve into motion tracking, scene detection,
+    and deep learning for video data.</p>
+<ul>
+<li><em>Recommended Course</em>: \""Deep Learning for Computer Vision\"" on
+    Udemy.</li>
+</ul>
+</li>
+</ul>
+<h3><strong>Resources</strong></h3>
+<h4><strong>Documentation</strong></h4>
+<ul>
+<li>
+<p><a href=""https://geopandas.org/"">GeoPandas Documentation</a></p>
+</li>
+<li>
+<p><a href=""https://librosa.org/doc/latest/index.html"">Librosa Documentation</a></p>
+</li>
+<li>
+<p><a href=""https://docs.opencv.org/4.x/index.html"">OpenCV Documentation</a></p>
+</li>
+</ul>
+<h4><strong>Articles and Tutorials</strong></h4>
+<ul>
+<li>
+<p><a href=""https://www.datacamp.com/tutorial/geopandas-tutorial-geospatial-analysis?utm_source=google&amp;utm_medium=paid_search&amp;utm_campaignid=19589720824&amp;utm_adgroupid=157156376311&amp;utm_device=c&amp;utm_keyword=&amp;utm_matchtype=&amp;utm_network=g&amp;utm_adpostion=&amp;utm_creative=684592140434&amp;utm_targetid=dsa-2218886984100&amp;utm_loc_interest_ms=&amp;utm_loc_physical_ms=9061709&amp;utm_content=&amp;utm_campaign=230119_1-sea~dsa~tofu_2-b2c_3-row-p2_4-prc_5-na_6-na_7-le_8-pdsh-go_9-nb-e_10-na_11-na&amp;gad_source=1&amp;gclid=EAIaIQobChMIoeqWnu-SigMV5tYWBR0_bwssEAAYASAAEgJSsvD_BwE"">\""Introduction to Geospatial Data with
+    GeoPandas\""</a></p>
+</li>
+<li>
+<p><a href=""https://www.kdnuggets.com/2020/02/audio-data-analysis-deep-learning-python-part-1.html"">\""Audio Processing with
+    Python\""</a></p>
+</li>
+<li>
+<p><a href=""https://mpolinowski.github.io/docs/Development/Python/2022-09-17-python-video-processing/2022-09-17/"">\""Video Processing with
+    OpenCV\""</a></p>
+</li>
+</ul>
+<h4><strong>Tools</strong></h4>
+<ul>
+<li>
+<p><a href=""https://www.qgis.org/""><strong>QGIS</strong>: Desktop application for geospatial
+    analysis.</a></p>
+</li>
+<li>
+<p><a href=""https://ffmpeg.org/ffmpeg.html""><strong>FFmpeg</strong>: Command-line tool for video
+    processing.</a></p>
+</li>
+<li>
+<p><a href=""https://www.audacityteam.org/"">Audacity: A tool for audio
+    processing</a></p>
+</li>
+</ul>
+<h4><strong>Community and Support</strong></h4>
+<ul>
+<li>
+<p><a href=""https://www.kaggle.com/discussions?sort=hotness"">Kaggle Forums</a></p>
+</li>
+<li>
+<p><a href=""https://github.com/opengeos/python-geospatial"">Geospatial Python
+    Community</a></p>
+</li>
+</ul>"
+ko-8,Sql Window Functions,"Professional Skills,Intermediate",Beginner,Learn Sql Window Functions in data science,"['Mode', 'R', 'SQL']",SQL Window Functions.docx,"SQL Window Functions<br>Overview<br>SQL Window Functions are powerful tools used for performing calculations across a set of table rows that are related to the current row. Unlike aggregate functions, which summarize data into a single value, window functions allow you to retain the individual rows while applying calculations like rankings, averages, or running totals. These functions are particularly useful in analytics and reporting tasks, enabling complex calculations over partitions of data while maintaining row-level details.<br>Learning Objectives<br>By the end of this topic, learners will be able to:<br>Understand the syntax and structure of SQL window functions.<br>Use window functions such as ROW_NUMBER(), RANK(), and DENSE_RANK() for data analysis.<br>Implement cumulative and moving averages using window functions.<br>Work with partitions and orders to calculate running totals and rankings.<br>Apply window functions to solve real-world data analysis problems.<br>Prerequisites<br>Before studying this topic, learners should be familiar with:<br>Basic SQL queries, including SELECT, FROM, WHERE, and GROUP BY.<br>Aggregate functions like COUNT(), SUM(), AVG().<br>Understanding the ORDER BY and PARTITION BY clauses in SQL.<br>Key Concepts<br>For Intermediate Learners:<br>Window Functions Syntax: Window functions are applied in the SELECT clause, with an OVER() clause that defines the window (or range) of rows over which the function operates.
+sql
+Copy code
+SELECT column1, column2,<br>       ROW_NUMBER() OVER (PARTITION BY column1 ORDER BY column2 DESC) AS row_num<br>FROM table_name;<br><br>Common Window Functions:<br>ROW_NUMBER(): Assigns a unique sequential integer to rows within a partition, useful for pagination and ranking.<br>RANK(): Assigns a rank to each row within a partition, with gaps in ranking for tied values.<br>DENSE_RANK(): Similar to RANK(), but without gaps in ranking for tied values.<br>NTILE(n): Divides the result set into n equal parts and assigns a bucket number to each row.<br>SUM(), AVG(), MIN(), MAX(): These aggregate functions can be used with OVER() to calculate values over a specified window.<br>Example:
+sql
+Copy code
+SELECT employee_id, department, salary,<br>       SUM(salary) OVER (PARTITION BY department ORDER BY salary) AS cumulative_salary<br>FROM employees;<br><br>Partitioning and Ordering:<br>PARTITION BY: Divides the result set into partitions to perform calculations separately on each partition (e.g., by department, region).<br>ORDER BY: Defines the order of rows within each partition (e.g., by date, salary).<br>Example:
+sql
+Copy code
+SELECT employee_id, department, salary,<br>       RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank<br>FROM employees;<br><br>Use Cases:<br>Running Totals: Calculate cumulative sums or averages over time.<br>Rankings: Rank employees by salary or products by sales.<br>Moving Averages: Calculate the average of data points in a sliding window (e.g., last 7 days of sales).<br>For Advanced Learners:<br>Window Functions vs. Aggregate Functions: While both window and aggregate functions operate over a set of rows, window functions allow you to retain individual rows. Understanding when to use one versus the other is crucial for performance and data accuracy.<br>Performance Considerations: Window functions, especially those involving large datasets or complex partitions, can be computationally expensive. Optimizing queries that use window functions (e.g., using appropriate indexes) is an important consideration for performance.<br>Advanced Use Cases: Window functions are commonly used in analytics tasks such as calculating percentiles, cumulative distribution, and moving averages over time series data. Advanced users may also explore more complex windowing techniques like conditional aggregations using CASE statements inside window functions.<br>Graphs/Diagrams<br>Window Function Overview: A diagram showing the syntax and flow of window functions, including the use of PARTITION BY and ORDER BY.<br>Running Total Calculation: A visualization of how cumulative sums or averages are computed over a range of rows.<br>Ranking Visualization: A flowchart showing how rankings are assigned to rows within a partition, including examples with RANK() and DENSE_RANK().<br>Hands-On Practice<br>Basic Window Functions:<br>Write a query that uses ROW_NUMBER() to rank products by price within each category.<br>SQL Exercise: Use RANK() to assign ranks to employees based on salary within each department.<br>Running Totals:<br>Write a query that calculates the running total of sales by date.<br>SQL Exercise: Create a cumulative sum of expenses for each department over the course of a year.<br>Moving Averages:<br>Write a query that calculates a 7-day moving average of stock prices.<br>SQL Exercise: Calculate a moving average of sales over a 30-day window.<br>Advanced Query:<br>Write a query using multiple window functions (e.g., ranking, running totals) for a real-world scenario such as tracking customer transactions or employee performance over time.<br>Additional Notes<br>Common Misconceptions: Some learners might confuse window functions with aggregate functions. Remember, window functions retain individual rows while performing calculations over a window, whereas aggregate functions reduce rows to a single summary value.<br>Pitfalls to Avoid: Using window functions without proper indexing can lead to poor performance, especially with large datasets. Always ensure efficient partitioning and ordering to minimize performance issues.<br>Additional Learning Paths<br>Advanced SQL: Explore more advanced SQL topics like complex joins, subqueries, and indexing strategies.<br>Data Analysis with SQL: Learn how to use SQL in data analysis, including techniques for time-series analysis, cohort analysis, and statistical analysis.<br>Resources<br>SQL Window Functions Documentation<br>SQL Window Functions: A Practical Guide (Mode Analytics)<br>PostgreSQL Window Functions Documentation<br>Suggested Search Queries:<br>""SQL window functions tutorial""<br>""Examples of running totals using SQL window functions""<br>""How to use RANK and DENSE_RANK in SQL""<br>""SQL moving average with window function""<br>""Performance optimization for SQL window functions""<br>Community and Support<br>Stack Overflow: SQL Window Functions tag<br>SQLServerCentral: SQL Server Window Functions Discussion<br>Reddit: r/SQL<br>Citations/References<br>Kline, M. (2015). SQL Queries for Mere Mortals. Addison-Wesley.<br>Pratt, P., & Adamski, M. (2017). SQL: A Beginner's Guide. McGraw-Hill Education.<br>SQL Server Documentation. (2021). Window Functions. Microsoft Docs. Available at: https://docs.microsoft.com/en-us/sql/t-sql/queries/select-over-clause<br>"
+ko-9,Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets,"Professional Skills,Intermediate",Beginner,Learn Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets in data science,"['Bias', 'Confusion Matrix', 'Dataset']",Model Evaluation and Deployment-Data Handling - Handling Imbalanced Datasets.md,"<p>Model Evaluation and Deployment: Handling Imbalanced Datasets</p>
+<p><strong>Level-Intermediate</strong></p>
+<h3><strong>Overview</strong></h3>
+<p>Imbalanced datasets are prevalent in real-world machine learning
+problems, where one class significantly outnumbers others. Examples
+include fraud detection, rare disease diagnosis, and anomaly detection.
+When training models on imbalanced datasets, the algorithms often
+prioritize the majority class, leading to biased models with poor
+predictive performance for the minority class. Addressing this issue
+involves understanding the nature of imbalance, employing specific
+preprocessing techniques, using appropriate evaluation metrics, and
+deploying robust models that can handle imbalance during inference.</p>
+<h3><strong>Learning Objectives</strong></h3>
+<p>By the end of this module, you will be able to:</p>
+<ul>
+<li>
+<p>Define imbalanced datasets and understand the challenges they
+    present.</p>
+</li>
+<li>
+<p>Explore techniques to preprocess and balance datasets effectively.</p>
+</li>
+<li>
+<p>Apply evaluation metrics that provide meaningful insights for
+    imbalanced datasets.</p>
+</li>
+<li>
+<p>Implement strategies for handling imbalance in real-world deployment
+    scenarios.</p>
+</li>
+</ul>
+<h3><strong>Prerequisites</strong></h3>
+<p>To fully engage with this material, you should have:</p>
+<ul>
+<li>
+<p>Familiarity with classification problems and evaluation metrics like
+    precision, recall, and F1-score.</p>
+</li>
+<li>
+<p>Basic knowledge of Python programming and machine learning libraries
+    (e.g., Scikit-learn, Imbalanced-learn).</p>
+</li>
+<li>
+<p>An understanding of data preprocessing techniques.</p>
+</li>
+</ul>
+<h3><strong>Key Concepts</strong></h3>
+<h4><strong>1. Understanding Imbalanced Datasets</strong></h4>
+<p><strong>Definition</strong>:</p>
+<p>An imbalanced dataset has unequal representation of classes, where one
+or more classes (the majority class) dominate while others (the minority
+class) are underrepresented.</p>
+<p><strong>Common Examples</strong>:</p>
+<ul>
+<li>
+<p>Fraud detection: Legitimate transactions outnumber fraudulent ones.</p>
+</li>
+<li>
+<p>Medical diagnosis: Positive cases for rare diseases are much fewer
+    than negative cases.</p>
+</li>
+<li>
+<p>Churn prediction: Most customers do not churn, leading to a dominant
+    majority class.</p>
+</li>
+</ul>
+<p><strong>Challenges with Imbalanced Datasets</strong>:</p>
+<ol>
+<li>
+<p><strong>Biased Predictions</strong>:</p>
+<p>a.  Models trained on imbalanced data tend to favor the majority
+    class, leading to poor predictive performance for the minority
+    class.</p>
+<p>b.  Example: A model predicting 99% of transactions as legitimate
+    could still achieve high accuracy but fail to detect fraud
+    effectively.</p>
+</li>
+<li>
+<p><strong>Misleading Metrics</strong>:</p>
+<p>a.  Accuracy alone may not reflect the true performance of the model
+    on minority classes.</p>
+<p>b.  Example: In a dataset with 95% majority class and 5% minority
+    class, a model predicting all samples as the majority class
+    would achieve 95% accuracy but have 0% recall for the minority
+    class.</p>
+</li>
+<li>
+<p><strong>Limited Data for Minority Classes</strong>:</p>
+<p>a.  Fewer training samples for the minority class make it harder for
+    the model to learn meaningful patterns.</p>
+</li>
+</ol>
+<h4><strong>2. Causes of Imbalance</strong></h4>
+<p><strong>Natural Occurrence</strong>:</p>
+<ul>
+<li>Certain phenomena are inherently rare (e.g., diseases, equipment
+    failures).</li>
+</ul>
+<p><strong>Data Collection Bias</strong>:</p>
+<ul>
+<li>Sampling processes might underrepresent certain groups (e.g.,
+    socio-economic data).</li>
+</ul>
+<p><strong>Design Constraints</strong>:</p>
+<ul>
+<li>Operational focus on majority cases might limit minority data
+    collection (e.g., fraud detection systems optimized for speed).</li>
+</ul>
+<h4><strong>3. Strategies for Handling Imbalanced Datasets</strong></h4>
+<p><strong>1. Resampling Techniques</strong></p>
+<p><strong>Oversampling the Minority Class</strong>:</p>
+<ul>
+<li><strong>Random Oversampling</strong>: Duplicates existing minority class samples
+    to increase their representation.</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>from imblearn.over_sampling import RandomOverSampler\
+ros = RandomOverSampler()\
+X_resampled, y_resampled = ros.fit_resample(X, y)</p>
+<ul>
+<li><strong>Synthetic Minority Oversampling Technique (SMOTE)</strong>:</li>
+</ul>
+<p>Generates synthetic samples by interpolating between existing minority
+class samples.</p>
+<p>python</p>
+<p>Copy code</p>
+<p>from imblearn.over_sampling import SMOTE\
+smote = SMOTE()\
+X_resampled, y_resampled = smote.fit_resample(X, y)</p>
+<p><strong>Undersampling the Majority Class</strong>:</p>
+<ul>
+<li>Reduces the number of samples in the majority class to balance the
+    dataset.</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>from imblearn.under_sampling import RandomUnderSampler\
+rus = RandomUnderSampler()\
+X_resampled, y_resampled = rus.fit_resample(X, y)</p>
+<p><strong>Combination Sampling</strong>:</p>
+<ul>
+<li>Balances the dataset by combining oversampling and undersampling
+    techniques.</li>
+</ul>
+<p><strong>Limitations of Resampling</strong>:</p>
+<ul>
+<li>
+<p>Oversampling can lead to overfitting on the minority class.</p>
+</li>
+<li>
+<p>Undersampling may discard valuable information from the majority
+    class.</p>
+</li>
+</ul>
+<p><strong>2. Cost-Sensitive Learning</strong></p>
+<ul>
+<li>
+<p>Modify algorithms to penalize misclassifications of the minority
+    class more heavily.</p>
+<ul>
+<li>
+<p><em>Weighted Loss Functions</em>: Assign higher weights to minority
+    class errors.</p>
+</li>
+<li>
+<p>Example: Using Scikit-learn\'s class_weight=\'balanced\' to
+    automatically compute weights.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>from sklearn.ensemble import RandomForestClassifier\
+model = RandomForestClassifier(class_weight=\'balanced\')\
+model.fit(X_train, y_train)</p>
+<ul>
+<li>Custom weights can also be specified based on the class imbalance
+    ratio.</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>weights = {0: 1, 1: 10} # Assigning higher weight to the minority
+class\
+model = RandomForestClassifier(class_weight=weights)\
+model.fit(X_train, y_train)</p>
+<p><strong>3. Advanced Sampling Techniques</strong></p>
+<p><strong>ADASYN (Adaptive Synthetic Sampling)</strong>:</p>
+<ul>
+<li>An improvement over SMOTE that focuses on generating synthetic
+    samples for harder-to-classify instances.</li>
+</ul>
+<p><strong>Borderline-SMOTE</strong>:</p>
+<ul>
+<li>Focuses on generating synthetic samples near decision boundaries to
+    improve classification.</li>
+</ul>
+<p><strong>4. Choosing Appropriate Metrics</strong></p>
+<ul>
+<li>
+<p>Use metrics that account for class imbalance and focus on the
+    performance of the minority class.</p>
+<ul>
+<li>
+<p><strong>Precision</strong>: Percentage of true positive predictions out of
+    all positive predictions.</p>
+</li>
+<li>
+<p><strong>Recall (Sensitivity)</strong>: Percentage of true positives detected
+    out of all actual positives.</p>
+</li>
+<li>
+<p><strong>F1-Score</strong>: Harmonic mean of precision and recall, balancing
+    both metrics.</p>
+</li>
+<li>
+<p><strong>ROC-AUC</strong>: Measures the trade-off between true positive rate
+    and false positive rate.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>from sklearn.metrics import roc_auc_score\
+print(roc_auc_score(y_test, y_pred_proba))</p>
+<ul>
+<li><strong>Confusion Matrix</strong>: Provides a detailed breakdown of true
+    positives, true negatives, false positives, and false negatives.</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>from sklearn.metrics import confusion_matrix\
+print(confusion_matrix(y_test, y_pred))</p>
+<h4><strong>4. Handling Imbalanced Data During Deployment</strong></h4>
+<p><strong>Real-Time Considerations</strong>:</p>
+<ul>
+<li>Monitor incoming data streams for class imbalance during inference.</li>
+</ul>
+<p><strong>Threshold Adjustment</strong>:</p>
+<ul>
+<li>Optimize the classification threshold to balance precision and
+    recall.</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>from sklearn.metrics import precision_recall_curve\
+precision, recall, thresholds = precision_recall_curve(y_test,
+y_pred_proba)</p>
+<p><strong>Continuous Retraining</strong>:</p>
+<ul>
+<li>Periodically retrain models with updated data to reflect real-world
+    changes.</li>
+</ul>
+<p><strong>Integrated Pipelines</strong>:</p>
+<ul>
+<li>Incorporate resampling, cost-sensitive learning, and evaluation into
+    deployment pipelines.</li>
+</ul>
+<h3><strong>Hands-On Practice</strong></h3>
+<ol>
+<li><strong>Exercise 1 (Easy)</strong>: Visualize the class distribution in an
+    imbalanced dataset.</li>
+</ol>
+<p>python</p>
+<p>Copy code</p>
+<p>import matplotlib.pyplot as plt\
+df[\'target\'].value_counts().plot(kind=\'bar\', title=\""Class
+Distribution\"")\
+plt.show()</p>
+<ol>
+<li><strong>Exercise 2 (Moderate)</strong>: Apply SMOTE to balance a dataset and
+    train a classifier.</li>
+</ol>
+<p>python</p>
+<p>Copy code</p>
+<p>from imblearn.over_sampling import SMOTE\
+from sklearn.ensemble import RandomForestClassifier\
+\
+smote = SMOTE()\
+X_resampled, y_resampled = smote.fit_resample(X, y)\
+model = RandomForestClassifier()\
+model.fit(X_resampled, y_resampled)</p>
+<ol>
+<li><strong>Exercise 3 (Challenging)</strong>: Implement a cost-sensitive logistic
+    regression model and evaluate performance.</li>
+</ol>
+<p>python</p>
+<p>Copy code</p>
+<p>from sklearn.linear_model import LogisticRegression\
+from sklearn.metrics import classification_report\
+\
+model = LogisticRegression(class_weight=\'balanced\')\
+model.fit(X_train, y_train)\
+predictions = model.predict(X_test)\
+print(classification_report(y_test, predictions))</p>
+<ol>
+<li><strong>Exercise 4 (Challenging)</strong>: Combine SMOTE with threshold
+    optimization to improve recall.</li>
+</ol>
+<h3><strong>Quiz: Test Your Understanding</strong></h3>
+<ol>
+<li>
+<p><strong>Which technique generates synthetic samples for the minority
+    class?</strong></p>
+<p>a.  a) Undersampling</p>
+<p>b.  b) SMOTE</p>
+<p>c.  c) Cost-sensitive learning</p>
+<p>d.  d) ADASYN</p>
+</li>
+<li>
+<p><strong>True or False</strong>: Accuracy is a reliable metric for imbalanced
+    datasets.</p>
+</li>
+<li>
+<p><strong>What does the F1-Score measure?</strong></p>
+<p>a.  a) Trade-off between sensitivity and specificity</p>
+<p>b.  b) Average precision and recall</p>
+<p>c.  c) Harmonic mean of precision and recall</p>
+<p>d.  d) Overall accuracy</p>
+</li>
+<li>
+<p><strong>Which of the following handles class imbalance during training by
+    weighting errors?</strong></p>
+<p>a.  a) Resampling</p>
+<p>b.  b) Cost-sensitive learning</p>
+<p>c.  c) Threshold optimization</p>
+<p>d.  d) Data augmentation</p>
+</li>
+</ol>
+<h3><strong>Quiz Answers</strong></h3>
+<ol>
+<li>
+<p><strong>b) SMOTE</strong></p>
+</li>
+<li>
+<p><strong>False</strong></p>
+</li>
+<li>
+<p><strong>c) Harmonic mean of precision and recall</strong></p>
+</li>
+<li>
+<p><strong>b) Cost-sensitive learning</strong></p>
+</li>
+</ol>
+<h3><strong>Additional Learning Paths</strong></h3>
+<ul>
+<li>
+<p><strong>Ensemble Techniques for Imbalance</strong>: Study bagging, boosting, and
+    hybrid approaches for imbalanced datasets.</p>
+</li>
+<li></li>
+</ul>"
