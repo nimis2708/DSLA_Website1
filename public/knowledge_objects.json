@@ -46,18 +46,6 @@
   },
   {
     "id": "ko-5",
-    "title": "Model Evaluation And Deployment Data Handling Data Augmentation For Imbal",
-    "section": "Professional Skills,Intermediate",
-    "level": "Beginner",
-    "overview": "Learn Model Evaluation And Deployment Data Handling Data Augmentation For Imbal in data science",
-    "tags": [
-      "Bias",
-      "Dataset",
-      "Evaluation Metrics"
-    ]
-  },
-  {
-    "id": "ko-6",
     "title": "Database Design",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -69,7 +57,7 @@
     ]
   },
   {
-    "id": "ko-7",
+    "id": "ko-6",
     "title": "Understanding Polymorphism In Python",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -79,7 +67,7 @@
     ]
   },
   {
-    "id": "ko-8",
+    "id": "ko-7",
     "title": "Handling Nulls In Sql  Coalesce, Ifnull",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -91,7 +79,7 @@
     ]
   },
   {
-    "id": "ko-9",
+    "id": "ko-8",
     "title": "Knowledge Object  Sql Joins (Intermediate Level)",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -103,7 +91,7 @@
     ]
   },
   {
-    "id": "ko-10",
+    "id": "ko-9",
     "title": "Aggregation In Sql",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -115,7 +103,7 @@
     ]
   },
   {
-    "id": "ko-11",
+    "id": "ko-10",
     "title": "Data Types And Data Structures Handling Complex Data Types (Geospatial",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -126,7 +114,7 @@
     ]
   },
   {
-    "id": "ko-12",
+    "id": "ko-11",
     "title": "Sql Window Functions",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -138,7 +126,7 @@
     ]
   },
   {
-    "id": "ko-13",
+    "id": "ko-12",
     "title": "Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
