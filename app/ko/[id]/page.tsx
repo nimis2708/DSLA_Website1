@@ -19,6 +19,7 @@ export default function KnowledgeObjectDetail() {
   const [ko, setKo] = useState<KnowledgeObject | null>(null);
   const [content, setContent] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchKO() {
@@ -50,12 +51,16 @@ export default function KnowledgeObjectDetail() {
           if (processed.github_path) {
             const githubRawUrl = `https://raw.githubusercontent.com/nimis2708/Data-Science-Learning-Accelerator/main/${processed.github_path}`;
             const fileRes = await fetch(githubRawUrl);
+            if (!fileRes.ok) {
+              throw new Error("Failed to fetch content from GitHub.");
+            }
             const fileText = await fileRes.text();
             setContent(fileText);
           }
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("Error loading KO detail:", err);
+        setError("Error loading the knowledge object details. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -65,6 +70,7 @@ export default function KnowledgeObjectDetail() {
   }, [id]);
 
   if (loading) return <div className="container py-10">Loading...</div>;
+  if (error) return <div className="container py-10">{error}</div>;
   if (!ko) return <div className="container py-10">Knowledge Object not found.</div>;
 
   return (
