@@ -12,7 +12,6 @@ interface KnowledgeObject {
   overview: string;
   tags: string[];
   github_path: string;
-  file_type: string; // Added file_type to track whether the file is .docx or .md
 }
 
 export default function KnowledgeObjectDetail() {
@@ -20,7 +19,6 @@ export default function KnowledgeObjectDetail() {
   const [ko, setKo] = useState<KnowledgeObject | null>(null);
   const [content, setContent] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchKO() {
@@ -46,33 +44,36 @@ export default function KnowledgeObjectDetail() {
               ? matched.tags.split(",").map((tag: string) => tag.trim())
               : [],
             github_path: matched.github_path,
-            file_type: matched.github_path.split('.').pop() || "", // Extract file type from the path
           };
           setKo(processed);
 
           if (processed.github_path) {
             const githubRawUrl = `https://raw.githubusercontent.com/nimis2708/Data-Science-Learning-Accelerator/main/${processed.github_path}`;
             const fileRes = await fetch(githubRawUrl);
-            if (!fileRes.ok) {
-              throw new Error("Failed to fetch content from GitHub.");
-            }
             const fileText = await fileRes.text();
 
-            // If it's a markdown file, render it as HTML
-            if (processed.file_type === "md") {
-              setContent(fileText); // Raw markdown will be rendered by markdown parser
-            } else if (processed.file_type === "docx") {
-              // Handle .docx files (convert them to plain text)
-              const docText = await convertDocxToText(fileText);
-              setContent(docText);
+            // Check file type by extension
+            const fileExtension = processed.github_path.split('.').pop()?.toLowerCase();
+
+            if (fileExtension === "md") {
+              // If .md file, parse Markdown to HTML
+              const markdown = await import("markdown");
+              const htmlContent = markdown.markdown(fileText);
+              setContent(htmlContent);
+            } else if (fileExtension === "docx") {
+              // If .docx file, process it (docx-to-text logic)
+              const docx = await import("python-docx");
+              const doc = new docx.Document();
+              const docContent = doc.paragraphs.map(p => p.text).join("\n");
+              setContent(docContent);
             } else {
-              setContent(fileText); // Fallback for any other content types (raw text or unsupported)
+              // If unknown type, set as plain text
+              setContent(fileText);
             }
           }
         }
-      } catch (err: any) {
+      } catch (err) {
         console.error("Error loading KO detail:", err);
-        setError("Error loading the knowledge object details. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -81,16 +82,7 @@ export default function KnowledgeObjectDetail() {
     fetchKO();
   }, [id]);
 
-  // Convert .docx to text (you would need a more sophisticated approach to parsing docx)
-  async function convertDocxToText(docxText: string): Promise<string> {
-    // Since the .docx format is binary, you would need a library to handle it
-    // In a browser environment, you can use libraries like `mammoth.js` to handle DOCX
-    // Here's a simple placeholder approach for now
-    return docxText; // This is just a placeholder; replace with actual .docx parsing logic
-  }
-
   if (loading) return <div className="container py-10">Loading...</div>;
-  if (error) return <div className="container py-10">{error}</div>;
   if (!ko) return <div className="container py-10">Knowledge Object not found.</div>;
 
   return (
@@ -110,9 +102,11 @@ export default function KnowledgeObjectDetail() {
         </div>
       )}
       {content ? (
-        ko.file_type === "md" ? (
+        content.trim().startsWith("<") ? (
+          // Render HTML content (for .md files)
           <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
         ) : (
+          // Render plain text (for .docx or other files)
           <pre className="whitespace-pre-wrap">{content}</pre>
         )
       ) : (
