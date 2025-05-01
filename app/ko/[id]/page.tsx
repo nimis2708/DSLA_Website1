@@ -1,68 +1,83 @@
-"use client";
+import React, { useState, useEffect } from 'react';
 
-import React, { useEffect, useState } from "react";
-import Papa from "papaparse";
+const KnowledgeObjects = () => {
+  const [tiles, setTiles] = useState([]);
+  const [selectedTile, setSelectedTile] = useState(null);
 
-type KnowledgeObject = {
-  id: string;
-  title: string;
-  section: string;
-  level: string;
-  overview: string;
-  tags: string;
-  github_path: string;
-  content: string;
-};
-
-export default function Page5() {
-  const [data, setData] = useState<KnowledgeObject[]>([]);
-  const [selectedTileId, setSelectedTileId] = useState<string | null>(null);
-
+  // Mock fetch call (you can replace this with a real API)
   useEffect(() => {
-    fetch("/knowledge_objects.csv")
-      .then((response) => response.text())
-      .then((csvText) => {
-        Papa.parse<KnowledgeObject>(csvText, {
-          header: true,
-          skipEmptyLines: true,
-          complete: (results) => {
-            setData(results.data);
-          },
-        });
-      });
+    const fetchTiles = async () => {
+      // Simulate async fetch
+      const mockData = [
+        {
+          id: 1,
+          title: 'Knowledge Object A',
+          description: 'This is a short description for Object A.',
+          tags: ['AI', 'ML'],
+        },
+        {
+          id: 2,
+          title: 'Knowledge Object B',
+          description: 'This is a short description for Object B.',
+          tags: ['Data', 'Analytics'],
+        },
+        {
+          id: 3,
+          title: 'Knowledge Object C',
+          description: 'This is a short description for Object C.',
+          tags: ['Cloud', 'Security'],
+        },
+      ];
+      setTiles(mockData);
+    };
+
+    fetchTiles();
   }, []);
 
-  return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Knowledge Objects</h1>
+  // Detail view
+  if (selectedTile) {
+    return (
+      <div className="p-6 max-w-3xl mx-auto">
+        <button
+          onClick={() => setSelectedTile(null)}
+          className="text-blue-600 underline mb-4 inline-block"
+        >
+          ← Back to all objects
+        </button>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {data.map((tile) => {
-          const isSelected = tile.id === selectedTileId;
-
-          return (
-            <div
-              key={tile.id}
-              className="p-4 border rounded shadow hover:bg-gray-100 transition cursor-pointer"
-              onClick={() =>
-                setSelectedTileId(isSelected ? null : tile.id)
-              }
-            >
-              <h2 className="text-xl font-semibold">{tile.title}</h2>
-              <p className="text-sm text-gray-600">{tile.overview}</p>
-
-              {isSelected && (
-                <div className="mt-4 bg-white rounded border-t pt-4">
-                  <div
-                    className="prose prose-sm sm:prose lg:prose-lg max-w-none"
-                    dangerouslySetInnerHTML={{ __html: tile.content }}
-                  />
-                </div>
-              )}
-            </div>
-          );
-        })}
+        <div className="bg-white shadow-md rounded p-6">
+          <h2 className="text-2xl font-bold mb-2">{selectedTile.title}</h2>
+          <p className="text-gray-700 mb-4">{selectedTile.description}</p>
+          <div className="flex flex-wrap gap-2">
+            {selectedTile.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
+    );
+  }
+
+  // Grid view
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 max-w-6xl mx-auto">
+      {tiles.map((tile) => (
+        <div
+          key={tile.id}
+          onClick={() => setSelectedTile(tile)}
+          className="cursor-pointer bg-white border border-gray-200 rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow"
+        >
+          <h3 className="text-xl font-semibold mb-2">{tile.title}</h3>
+          <p className="text-gray-600">{tile.description}</p>
+        </div>
+      ))}
     </div>
   );
-}
+};
+
+export default KnowledgeObjects;
