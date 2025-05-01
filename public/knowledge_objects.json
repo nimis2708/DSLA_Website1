@@ -9,14 +9,6 @@
   },
   {
     "id": "ko-2",
-    "title": "Data Types And Data Structures Image Data Definition And Use Cases",
-    "section": "Professional Skills,Intermediate",
-    "level": "Beginner",
-    "overview": "Learn Data Types And Data Structures Image Data Definition And Use Cases in data science",
-    "tags": "Computer Vision, Feature, Python"
-  },
-  {
-    "id": "ko-3",
     "title": "Model Validation   Stratified Crossvalidation (1)",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -24,7 +16,7 @@
     "tags": "Cross-Validation, Dataset, Decision Tree"
   },
   {
-    "id": "ko-4",
+    "id": "ko-3",
     "title": "Aws Security  Best Practices For Data Science Projects (1)",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -32,7 +24,7 @@
     "tags": "Dataset"
   },
   {
-    "id": "ko-5",
+    "id": "ko-4",
     "title": "Data Types And Data Structures Data Structures Lists, Dictionaries,Tuples",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -40,7 +32,7 @@
     "tags": "Data Structure, Python"
   },
   {
-    "id": "ko-6",
+    "id": "ko-5",
     "title": "Using Row Number, Rank, And Dense Rank",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -48,7 +40,7 @@
     "tags": "Database, Dataset, Mode"
   },
   {
-    "id": "ko-7",
+    "id": "ko-6",
     "title": "Model Evaluation And Deployment Data Handling Data Augmentation For Imbal",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -56,7 +48,7 @@
     "tags": "Bias, Dataset, Evaluation Metrics"
   },
   {
-    "id": "ko-8",
+    "id": "ko-7",
     "title": "Database Design",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -64,7 +56,7 @@
     "tags": "Database, Data Modeling, Normalization"
   },
   {
-    "id": "ko-9",
+    "id": "ko-8",
     "title": "Understanding Polymorphism In Python",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -72,7 +64,7 @@
     "tags": "Python"
   },
   {
-    "id": "ko-10",
+    "id": "ko-9",
     "title": "Handling Nulls In Sql  Coalesce, Ifnull",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -80,7 +72,7 @@
     "tags": "Database, Dataset, Decision Tree"
   },
   {
-    "id": "ko-11",
+    "id": "ko-10",
     "title": "Knowledge Object  Sql Joins (Intermediate Level)",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -88,7 +80,7 @@
     "tags": "Database, Dataset, SQL"
   },
   {
-    "id": "ko-12",
+    "id": "ko-11",
     "title": "Aggregation In Sql",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -96,7 +88,7 @@
     "tags": "Apache Spark, Big Data, Database"
   },
   {
-    "id": "ko-13",
+    "id": "ko-12",
     "title": "Data Types And Data Structures Handling Complex Data Types (Geospatial",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -104,7 +96,7 @@
     "tags": "Computer Vision, Python"
   },
   {
-    "id": "ko-14",
+    "id": "ko-13",
     "title": "Sql Window Functions",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
@@ -112,7 +104,7 @@
     "tags": "Mode, R, SQL"
   },
   {
-    "id": "ko-15",
+    "id": "ko-14",
     "title": "Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets",
     "section": "Professional Skills,Intermediate",
     "level": "Beginner",
