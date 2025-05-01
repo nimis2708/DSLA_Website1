@@ -44,8 +44,13 @@ export default function ExplorePage() {
           level: item.level,
           overview: item.overview,
           tags: typeof item.tags === "string"
-            ? item.tags.split(",").map((tag: string) => tag.trim())
-            : Array.isArray(item.tags) ? item.tags : [],
+            ? item.tags
+                .replace(/^\[|\]$/g, "") // remove surrounding square brackets
+                .split(",")
+                .map((tag: string) => tag.replace(/^['"]|['"]$/g, "").trim()) // remove quotes and trim
+            : Array.isArray(item.tags)
+            ? item.tags
+            : [],
         })) as KnowledgeObject[];
 
         setKnowledgeObjects(processedData);
@@ -85,7 +90,6 @@ export default function ExplorePage() {
         <div className="text-center text-xl text-muted-foreground">Loading knowledge objects...</div>
       ) : (
         <div className="flex flex-col space-y-6">
-          {/* Title */}
           <div className="space-y-2">
             <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Explore Knowledge Objects
