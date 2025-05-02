@@ -1,121 +1,24 @@
-id,title,section,level,overview,tags,github_path,content
-ko-1,Using Sql With Time Series Data,"Professional Skills,Intermediate",Beginner,Learn Using Sql With Time Series Data in data science,"['Data Analyst', 'Database', 'Data Scientist']",Using SQL with Time Series Data.md,"<h1><strong>Using SQL with Time Series Data</strong></h1>
-<h2><strong>Overview</strong></h2>
-<p>Time series data refers to data points collected or recorded at specific time intervals. Analyzing time series data is essential for understanding trends, patterns, and seasonal variations in various fields such as finance, healthcare, and marketing. SQL offers several features that allow analysts to efficiently query, manipulate, and aggregate time series data for forecasting, anomaly detection, and trend analysis. This topic explores how to work with time series data in SQL and apply it to solve real-world problems.</p>
-<hr />
-<h2><strong>Learning Objectives</strong></h2>
-<p>By the end of this module, learners will be able to:</p>
-<p>●   Understand the fundamentals of time series data and its unique challenges.<br />
-●   Use SQL to extract, filter, and transform time-based data for analysis.<br />
-●   Implement common time series analysis techniques such as rolling averages, period comparisons, and seasonal decomposition using SQL.<br />
-●   Work with different SQL functions to perform date and time-based operations (e.g., DATE_TRUNC, EXTRACT, and DATE_ADD).<br />
-●   Handle missing or irregular time series data using SQL techniques.<br />
-●   Apply SQL to perform trend analysis, forecasting, and anomaly detection on time series data.</p>
-<hr />
-<h2><strong>Prerequisites</strong></h2>
-<p>●   <strong>Basic SQL Knowledge</strong>: Familiarity with SQL syntax such as SELECT, WHERE, GROUP BY, and JOIN.<br />
-●   <strong>Intermediate SQL Skills</strong>: Understanding of aggregation functions (e.g., SUM, AVG) and the ability to filter data using conditions.<br />
-●   <strong>Date and Time Functions</strong>: Basic knowledge of date and time functions in SQL, such as DATE, DATETIME, and TIMESTAMP.<br />
-●   <strong>Data Analysis Concepts</strong>: Understanding of time series data and its characteristics, such as trends, seasonality, and noise.<br />
-●   <strong>Tools</strong>: Access to a SQL database management system or SQL environment like MySQL, PostgreSQL, or SQL Server.</p>
-<hr />
-<h2><strong>Key Concepts</strong></h2>
-<h3><strong>For Beginners</strong></h3>
-<p>●   <strong>What is Time Series Data?</strong><br />
-Time series data consists of data points that are indexed by time. It is typically collected at regular intervals (e.g., daily, monthly, or hourly) and represents trends or patterns over time.<br />
-●   <strong>Basic Date and Time Functions</strong><br />
-○   <strong>DATE_TRUNC</strong>: Truncates a timestamp to a specified date part (e.g., day, month, year).<br />
-○   <strong>EXTRACT</strong>: Extracts parts of a date or timestamp, such as year, month, day, etc.<br />
-○   <strong>DATE_ADD</strong>: Adds a specified interval (e.g., days, months) to a date.<br />
-○   <strong>Example</strong>: Aggregating sales data by month, using the EXTRACT function to pull out the month part of a timestamp.<br />
-●   <strong>Aggregating Time Series Data</strong><br />
-○   You can aggregate time series data by specific time periods such as year, month, or week. For example, you can calculate the total sales per month or the average temperature per year.</p>
-<h3><strong>For Intermediate Learners</strong></h3>
-<p>●   <strong>Rolling Averages and Moving Windows</strong><br />
-○   <strong>Moving Average</strong>: A statistical method used to smooth out fluctuations in time series data to identify trends.<br />
-○   <strong>Example</strong>: Use SQL to calculate a 7-day moving average for daily sales data using window functions.<br />
-○   <strong>Window Functions</strong>: Functions like <code>ROW_NUMBER()</code>, <code>RANK()</code>, <code>LEAD()</code>, and <code>LAG()</code> allow you to calculate cumulative totals, moving averages, and time-based differences.<br />
-●   <strong>Time-Based Filtering</strong><br />
-○   You can filter data by date or time intervals. For example, to analyze sales in a specific month, you can filter for records where the <code>timestamp</code> falls between the first and last day of that month.<br />
-○   <strong>Example</strong>: <code>SELECT * FROM sales WHERE EXTRACT(MONTH FROM order_date) = 5 AND EXTRACT(YEAR FROM order_date) = 2023;</code><br />
-●   <strong>Seasonality and Trends</strong><br />
-○   <strong>Seasonality</strong>: The recurring pattern in time series data that occurs at regular intervals (e.g., increased sales during holidays).<br />
-○   <strong>Trend</strong>: The long-term movement in time series data, either upward or downward.<br />
-○   <strong>Decomposition</strong>: You can decompose time series data into components like trend, seasonality, and noise using SQL-based methods, such as applying a moving average to remove short-term fluctuations.</p>
-<h3><strong>For Advanced Learners</strong></h3>
-<p>●   <strong>Advanced Time Series Techniques</strong><br />
-○   <strong>Seasonal Decomposition</strong>: Decompose time series data to separate trend, seasonal, and irregular components using SQL functions.<br />
-○   <strong>Time-Based JOINs</strong>: Use JOINs to combine time series data from different tables (e.g., join sales data with holiday data to analyze seasonal impacts).<br />
-○   <strong>Example</strong>: Perform a JOIN between sales and promotion data to analyze the effect of marketing campaigns on product sales over time.<br />
-●   <strong>Handling Missing Data in Time Series</strong><br />
-○   <strong>Filling Missing Values</strong>: Use SQL to identify gaps in time series data and fill them with interpolation, carry-forward, or backward filling.<br />
-○   <strong>Example</strong>: Use a LEFT JOIN with a table of expected time intervals to fill missing time periods in a time series dataset.<br />
-●   <strong>Forecasting and Anomaly Detection</strong><br />
-○   <strong>Exponential Smoothing</strong>: Use SQL to implement smoothing techniques to reduce noise in time series data.<br />
-○   <strong>Anomaly Detection</strong>: Identify outliers or unusual patterns in time series data.<br />
-○   <strong>SQL-Based Forecasting</strong>: Though SQL is not typically used for full-fledged forecasting, simple techniques like exponential smoothing or trend analysis can be implemented using SQL queries.<br />
-●   <strong>Performance Considerations with Time Series Data</strong><br />
-○   <strong>Indexes</strong>: Indexing on time-based columns (e.g., timestamp) can significantly improve query performance for time series analysis.<br />
-○   <strong>Partitioning</strong>: Large time series datasets can be partitioned by time intervals (e.g., by year, month, or day) for more efficient querying.<br />
-●   <strong>Case Study</strong>:<br />
-○   <strong>Stock Market Analysis</strong>: Analyze stock prices over time to identify trends and predict future price movements using SQL queries for time series analysis.<br />
-○   <strong>Weather Data</strong>: Use SQL to analyze weather patterns over the past decade, identifying seasonal trends and anomalies.</p>
-<hr />
-<h2><strong>Hands-On Practice</strong></h2>
-<ol>
-<li><strong>Beginner Task</strong>: Write a query to calculate the total sales per day, using the <code>DATE_TRUNC</code> function to group data by day.  </li>
-<li><strong>Intermediate Task</strong>: Write a query to calculate a 30-day moving average of stock prices using the <code>LAG()</code> window function.  </li>
-<li><strong>Advanced Project</strong>: Write a query that combines sales data with public holidays to analyze the impact of holidays on sales over a year. Use seasonal decomposition to identify trends and seasonality in the data.</li>
-</ol>
-<hr />
-<h2><strong>Additional Notes</strong></h2>
-<p>●   <strong>Common Misconceptions</strong><br />
-○   Time series data can only be analyzed with specialized tools like R or Python. While these tools offer advanced capabilities, SQL is an effective way to perform basic and intermediate time series analysis directly in a database.<br />
-○   Missing time series data always requires external tools to handle. SQL provides several ways to handle missing or irregular time series data directly within the query.<br />
-●   <strong>Tips</strong><br />
-○   Use window functions like <code>LAG()</code> and <code>LEAD()</code> to calculate time differences and trends in time series data.<br />
-○   Partition your time series data by time intervals (e.g., by month or year) to improve performance and simplify queries.<br />
-○   Regularly use the <code>EXPLAIN</code> statement to analyze and optimize the performance of time series queries, especially with large datasets.</p>
-<hr />
-<h2><strong>Additional Learning Paths</strong></h2>
-<p>●   <strong>Courses</strong>:<br />
-○   ""Time Series Analysis with SQL"" on Udemy.<br />
-○   ""Advanced SQL for Data Analysts"" on LinkedIn Learning.<br />
-●   <strong>Books</strong>:<br />
-○   <em>Data Science for Business</em> by Foster Provost and Tom Fawcett.<br />
-○   <em>Practical Time Series Forecasting</em> by Galit Shmueli and Kenneth C. Lichtendahl.<br />
-●   <strong>Certifications</strong>:<br />
-○   Microsoft Certified: Data Analyst Associate.<br />
-○   SAS Certified Data Scientist.</p>
-<hr />
-<h2><strong>Resources</strong></h2>
-<ol>
-<li><strong>Academic Papers</strong>: Research papers on time series analysis methods.  </li>
-<li><strong>Blog Posts</strong>: Articles on SQL techniques for time series forecasting and anomaly detection.  </li>
-<li><strong>Search Queries</strong>:</li>
-</ol>
-<p>○    ""SQL time series analysis methods.""</p>
-<p>○    ""Handling missing data in time series SQL.""</p>
-<p>○    ""Time series forecasting with SQL queries.""</p>
-<ol>
-<li><strong>Open-Source Libraries</strong>: Time series analysis tools in SQL, such as PostgreSQL's <code>timescaledb</code> extension.</li>
-</ol>
-<hr />
-<h2><strong>Community and Support</strong></h2>
-<p>●   <strong>Online Forums</strong>:<br />
-○   <a href=""https://stackoverflow.com/questions/tagged/sql"">Stack Overflow</a> for SQL-related questions and discussions.<br />
-○   <a href=""https://www.reddit.com/r/SQL/"">Reddit SQL</a> for time series SQL analysis tips and queries.<br />
-●   <strong>Professional Networks</strong>:<br />
-○   LinkedIn groups focusing on SQL and time series data analysis.<br />
-○   Join SQL-focused Slack or Discord communities for peer-to-peer learning.</p>
-<hr />
-<h2><strong>Citations/References</strong></h2>
-<ol>
-<li>Shmueli, G., &amp; Lichtendahl, K. C. (2016). <em>Practical Time Series Forecasting</em>. Axelrod.  </li>
-<li>Provost, F., &amp; Fawcett, T. (2013). <em>Data Science for Business</em>. O'Reilly Media.  </li>
-<li>PostgreSQL Documentation: Time series data handling using <code>timescaledb</code>.</li>
-</ol>"
-ko-2,Data Types And Data Structures Handling Complex Data Types (Geospatial,"Professional Skills,Intermediate",Beginner,Learn Data Types And Data Structures Handling Complex Data Types (Geospatial in data science,"['Computer Vision', 'Python']",Data Types and Data Structures-Handling Complex Data Types (Geospatial.md,"<p><strong>Section:</strong> Data Types and Data Structures</p>
+"id","title","section","level","overview","tags","github_path","content"
+"ko-1","Azure Machine Learning Intermediate (1)","Professional Skills,Intermediate","Beginner","Learn Azure Machine Learning Intermediate (1) in data science","Algorithm; API; Big Data","Azure Machine Learning Intermediate (1).docx","Azure Machine Learning<br>Overview: Azure Machine Learning is a cloud-based service provided by Microsoft that enables data scientists and machine learning engineers to build, train, deploy, and manage machine learning models at scale. With tools for automating model development and a broad array of pre-built algorithms, Azure ML simplifies the process of creating and deploying models. It integrates with other Azure services to provide a comprehensive machine learning pipeline, making it a powerful tool for enterprises and organizations working with large datasets.<br>Learning Objectives: By the end of this topic, learners will be able to:<br>Understand the architecture of Azure Machine Learning and its key components.<br>Build and train machine learning models using Azure ML Studio and SDK.<br>Deploy machine learning models as web services on Azure.<br>Utilize automated machine learning (AutoML) to automate the model development process.<br>Integrate Azure ML with other Azure services like Azure Databricks, Azure Data Lake, and Power BI.<br>Prerequisites: Before studying Azure Machine Learning, learners should:<br>Have a basic understanding of machine learning concepts, including supervised and unsupervised learning, model training, and evaluation.<br>Be familiar with Python and machine learning libraries like scikit-learn or TensorFlow.<br>Have experience with cloud computing or cloud-based services (e.g., Azure, AWS, or GCP).<br>Understand basic data engineering concepts like ETL (extract, transform, load) processes and data storage.<br>Key Concepts:<br>Azure Machine Learning Workspace:<br>Intermediate Level Explanation: The workspace is the central control plane where all resources related to Azure Machine Learning are stored. It contains datasets, experiments, pipelines, and models, offering a unified environment for managing the lifecycle of machine learning projects.
+Example: You can create and manage workspaces through the Azure portal or programmatically using the Azure SDK for Python.<br>Building Models with Azure ML Studio:<br>Intermediate Level Explanation: Azure ML Studio is a drag-and-drop tool that allows you to build machine learning pipelines without extensive coding. It includes pre-built modules for data transformation, model training, and evaluation.
+Example: Use the AutoML feature to automatically select the best model based on data characteristics, or manually configure pipelines for more control.
+python
+Copy code
+from azureml.core import Workspace<br>ws = Workspace.from_config()<br><br>Automated Machine Learning (AutoML):<br>Intermediate Level Explanation: Azure AutoML automates the process of applying machine learning to datasets, performing tasks like feature selection, model training, and hyperparameter tuning. It simplifies the process for non-experts but also allows experienced practitioners to explore and fine-tune model parameters.
+Example: AutoML can be used to identify the best algorithm for a classification task with minimal intervention, providing model explanations for interpretability.
+python
+Copy code
+from azureml.automl.core.forecasting_parameters import ForecastingParameters<br>from azureml.automl.core import AutoMLConfig<br><br>Model Deployment:<br>Advanced Level Explanation: Azure Machine Learning enables the deployment of models as web services that can be accessed by other applications via REST APIs. This allows for real-time predictions and seamless integration into business processes. Azure ML supports deploying models on Azure Kubernetes Service (AKS) or Azure Container Instances (ACI).
+Example: Use the Azure CLI or SDK to deploy a machine learning model and set up scalable endpoints.
+bash
+Copy code
+az ml model deploy --model my_model.pkl --service-name my_service --workspace my_workspace<br><br>Experimentation and Model Management:<br>Intermediate Level Explanation: Azure ML provides tools to manage experiments, track runs, and compare model performance across different iterations. This helps ensure reproducibility and accountability in model development.
+Example: Logging experiment metrics and models for later analysis and comparison.
+python
+Copy code
+run.log(""""Accuracy"""", np.float(accuracy))<br><br>Integrating with Other Azure Services:<br>Advanced Level Explanation: Azure ML can be integrated with other Azure services such as Azure Databricks, for big data analytics and model training, and Azure Data Lake, for large-scale data storage. This enables a seamless pipeline from raw data to deployed models.
+Example: Use Azure Databricks for data preprocessing and Azure ML for model training within the same workflow.<br>Graphs/Diagrams:<br>Azure ML Architecture Diagram: A flowchart that shows how data flows from Azure Data Lake to Azure ML for training and then to Azure Kubernetes Service for deployment.<br>AutoML Workflow Diagram: Visualize the steps AutoML takes to automate the model building process, from data preprocessing to hyperparameter tuning.<br>Model Deployment Architecture: Diagram showing how models deployed on AKS can be scaled and accessed via REST APIs for real-time predictions.<br>Hands-On Practice:<br>Beginner Task:<br>Create an Azure ML workspace and load a dataset. Explore AutoML to build a simple classification model.<br>Intermediate Task:<br>Build a machine learning pipeline in Azure ML Studio using a regression model. Train, evaluate, and deploy the model to Azure Kubernetes Service.<br>Advanced Task:<br>Integrate Azure Machine Learning with Azure Databricks to preprocess a large dataset, train a deep learning model, and deploy it using Azure ML’s SDK.<br>Quizzes/Assessments (Optional):<br>Intermediate-Level Quiz:<br>What are the key components of an Azure Machine Learning workspace?<br>How does AutoML simplify the machine learning process?<br>Advanced-Level Assessment: You’ve been tasked with deploying a machine learning model for fraud detection. Using Azure ML, design a pipeline that includes data ingestion, model training, and real-time deployment. Explain how you would optimize this for large datasets and scale.<br>Additional Notes:<br>Common Pitfalls:<br>Model Overfitting in AutoML: AutoML can sometimes overfit on small datasets, so it’s important to use cross-validation and other evaluation techniques.<br>Inefficient Resource Use: When using services like AKS for model deployment, it’s essential to monitor resource usage to avoid unnecessary costs.<br>Data Privacy and Compliance: When working with sensitive data, ensure that your Azure resources comply with regulations like GDPR or HIPAA.<br>Additional Learning Paths: For further exploration:<br>Study Azure Databricks to preprocess big data efficiently and integrate it into Azure ML pipelines.<br>Learn about MLOps (Machine Learning Operations) using Azure DevOps to automate and streamline the deployment and management of machine learning models.<br>Explore Azure Cognitive Services for pre-built machine learning APIs like computer vision or speech-to-text.<br>Resources:<br>Azure Machine Learning Documentation (Microsoft)<br>Azure ML SDK for Python<br>Azure Machine Learning for Data Scientists (Pluralsight)<br>Practical Azure Machine Learning (O'Reilly)<br>AutoML in Azure ML Studio<br>Search queries:<br>“Azure ML model deployment best practices”<br>“How to use AutoML in Azure Machine Learning”<br>“Azure Databricks integration with Azure ML”<br>“Azure ML workspace setup and configuration”<br>“Azure Machine Learning pipelines tutorial”<br>Community and Support:<br>Microsoft Azure Machine Learning Forum: https://techcommunity.microsoft.com/t5/azure-ai/ct-p/AzureAI<br>Stack Overflow Azure ML Tag: https://stackoverflow.com/questions/tagged/azure-machine-learning<br>Azure DevOps Community for learning about MLOps: https://devblogs.microsoft.com/devops/<br>Citations/References:<br>Microsoft. (2021). Azure Machine Learning Documentation. Retrieved from https://docs.microsoft.com/en-us/azure/machine-learning/<br>Chase, B. (2020). Practical Azure Machine Learning. O’Reilly Media.<br>Microsoft. (2021). Azure ML SDK for Python. Retrieved from https://docs.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py<br>"
+"ko-2","Data Types And Data Structures Handling Complex Data Types (Geospatial","Professional Skills,Intermediate","Beginner","Learn Data Types And Data Structures Handling Complex Data Types (Geospatial in data science","Computer Vision; Python","Data Types and Data Structures-Handling Complex Data Types (Geospatial.md","<p><strong>Section:</strong> Data Types and Data Structures</p>
 <p>Handling Complex Data Types (Geospatial, Audio, Video)</p>
 <p><strong>Level</strong>: Intermediate</p>
 <h3><strong>Overview</strong></h3>
@@ -179,7 +82,7 @@ raster images of maps.</p>
 <p>python</p>
 <p>Copy code</p>
 <p>import geopandas as gpd\
-gdf = gpd.read_file(\""world_countries.shp\"") # Load shapefile\
+gdf = gpd.read_file(\""""world_countries.shp\"""") # Load shapefile\
 gdf.plot() # Plot geographic data</p>
 <ul>
 <li>
@@ -234,7 +137,7 @@ waveforms, spectrograms, or encoded files like MP3 or WAV.</p>
 <p>python</p>
 <p>Copy code</p>
 <p>import librosa\
-y, sr = librosa.load(\""audio_file.wav\"", sr=22050) # Load audio file\
+y, sr = librosa.load(\""""audio_file.wav\"""", sr=22050) # Load audio file\
 librosa.display.waveshow(y, sr=sr) # Plot waveform</p>
 <ul>
 <li>
@@ -291,12 +194,12 @@ MP4, AVI, or MKV.</p>
 <p>python</p>
 <p>Copy code</p>
 <p>import cv2\
-cap = cv2.VideoCapture(\""video_file.mp4\"")\
+cap = cv2.VideoCapture(\""""video_file.mp4\"""")\
 while cap.isOpened():\
 ret, frame = cap.read()\
 if not ret:\
 break\
-cv2.imshow(\""Frame\"", frame)\
+cv2.imshow(\""""Frame\"""", frame)\
 if cv2.waitKey(1) &amp; 0xFF == ord(\'q\'):\
 break\
 cap.release()\
@@ -341,7 +244,7 @@ cv2.destroyAllWindows()</p>
 <p>python</p>
 <p>Copy code</p>
 <p>import geopandas as gpd\
-gdf = gpd.read_file(\""data.geojson\"")\
+gdf = gpd.read_file(\""""data.geojson\"""")\
 gdf.plot()</p>
 <ol>
 <li><strong>Exercise 2 (Audio)</strong>: Load an audio file, generate its
@@ -351,7 +254,7 @@ gdf.plot()</p>
 <p>Copy code</p>
 <p>import librosa\
 import librosa.display\
-y, sr = librosa.load(\""audio.wav\"")\
+y, sr = librosa.load(\""""audio.wav\"""")\
 librosa.display.specshow(librosa.amplitude_to_db(librosa.stft(y),
 ref=np.max))</p>
 <ol>
@@ -361,13 +264,13 @@ ref=np.max))</p>
 <p>python</p>
 <p>Copy code</p>
 <p>import cv2\
-cap = cv2.VideoCapture(\""video.mp4\"")\
+cap = cv2.VideoCapture(\""""video.mp4\"""")\
 frame_count = 0\
 while cap.isOpened():\
 ret, frame = cap.read()\
 if not ret:\
 break\
-cv2.imwrite(f\""frame_{frame_count}.jpg\"", frame)\
+cv2.imwrite(f\""""frame_{frame_count}.jpg\"""", frame)\
 frame_count += 1\
 cap.release()</p>
 <ol>
@@ -432,7 +335,7 @@ cap.release()</p>
 <p><strong>Advanced Geospatial Analysis</strong>: Learn about spatial joins,
     geocoding, and advanced mapping techniques.</p>
 <ul>
-<li><em>Recommended Course</em>: \""Geospatial Data Analysis with Python\""
+<li><em>Recommended Course</em>: \""""Geospatial Data Analysis with Python\""""
     on DataCamp.</li>
 </ul>
 </li>
@@ -440,8 +343,8 @@ cap.release()</p>
 <p><strong>Audio Signal Processing</strong>: Explore advanced techniques like speech
     synthesis, pitch detection, and audio classification.</p>
 <ul>
-<li><em>Recommended Resource</em>: <a href=""https://www.coursera.org/learn/audio-signal-processing"">\""Audio Signal Processing for Machine
-    Learning\""</a>
+<li><em>Recommended Resource</em>: <a href=""""https://www.coursera.org/learn/audio-signal-processing"""">\""""Audio Signal Processing for Machine
+    Learning\""""</a>
     on Coursera.</li>
 </ul>
 </li>
@@ -449,7 +352,7 @@ cap.release()</p>
 <p><strong>Video Analytics</strong>: Delve into motion tracking, scene detection,
     and deep learning for video data.</p>
 <ul>
-<li><em>Recommended Course</em>: \""Deep Learning for Computer Vision\"" on
+<li><em>Recommended Course</em>: \""""Deep Learning for Computer Vision\"""" on
     Udemy.</li>
 </ul>
 </li>
@@ -458,56 +361,56 @@ cap.release()</p>
 <h4><strong>Documentation</strong></h4>
 <ul>
 <li>
-<p><a href=""https://geopandas.org/"">GeoPandas Documentation</a></p>
+<p><a href=""""https://geopandas.org/"""">GeoPandas Documentation</a></p>
 </li>
 <li>
-<p><a href=""https://librosa.org/doc/latest/index.html"">Librosa Documentation</a></p>
+<p><a href=""""https://librosa.org/doc/latest/index.html"""">Librosa Documentation</a></p>
 </li>
 <li>
-<p><a href=""https://docs.opencv.org/4.x/index.html"">OpenCV Documentation</a></p>
+<p><a href=""""https://docs.opencv.org/4.x/index.html"""">OpenCV Documentation</a></p>
 </li>
 </ul>
 <h4><strong>Articles and Tutorials</strong></h4>
 <ul>
 <li>
-<p><a href=""https://www.datacamp.com/tutorial/geopandas-tutorial-geospatial-analysis?utm_source=google&amp;utm_medium=paid_search&amp;utm_campaignid=19589720824&amp;utm_adgroupid=157156376311&amp;utm_device=c&amp;utm_keyword=&amp;utm_matchtype=&amp;utm_network=g&amp;utm_adpostion=&amp;utm_creative=684592140434&amp;utm_targetid=dsa-2218886984100&amp;utm_loc_interest_ms=&amp;utm_loc_physical_ms=9061709&amp;utm_content=&amp;utm_campaign=230119_1-sea~dsa~tofu_2-b2c_3-row-p2_4-prc_5-na_6-na_7-le_8-pdsh-go_9-nb-e_10-na_11-na&amp;gad_source=1&amp;gclid=EAIaIQobChMIoeqWnu-SigMV5tYWBR0_bwssEAAYASAAEgJSsvD_BwE"">\""Introduction to Geospatial Data with
-    GeoPandas\""</a></p>
+<p><a href=""""https://www.datacamp.com/tutorial/geopandas-tutorial-geospatial-analysis?utm_source=google&amp;utm_medium=paid_search&amp;utm_campaignid=19589720824&amp;utm_adgroupid=157156376311&amp;utm_device=c&amp;utm_keyword=&amp;utm_matchtype=&amp;utm_network=g&amp;utm_adpostion=&amp;utm_creative=684592140434&amp;utm_targetid=dsa-2218886984100&amp;utm_loc_interest_ms=&amp;utm_loc_physical_ms=9061709&amp;utm_content=&amp;utm_campaign=230119_1-sea~dsa~tofu_2-b2c_3-row-p2_4-prc_5-na_6-na_7-le_8-pdsh-go_9-nb-e_10-na_11-na&amp;gad_source=1&amp;gclid=EAIaIQobChMIoeqWnu-SigMV5tYWBR0_bwssEAAYASAAEgJSsvD_BwE"""">\""""Introduction to Geospatial Data with
+    GeoPandas\""""</a></p>
 </li>
 <li>
-<p><a href=""https://www.kdnuggets.com/2020/02/audio-data-analysis-deep-learning-python-part-1.html"">\""Audio Processing with
-    Python\""</a></p>
+<p><a href=""""https://www.kdnuggets.com/2020/02/audio-data-analysis-deep-learning-python-part-1.html"""">\""""Audio Processing with
+    Python\""""</a></p>
 </li>
 <li>
-<p><a href=""https://mpolinowski.github.io/docs/Development/Python/2022-09-17-python-video-processing/2022-09-17/"">\""Video Processing with
-    OpenCV\""</a></p>
+<p><a href=""""https://mpolinowski.github.io/docs/Development/Python/2022-09-17-python-video-processing/2022-09-17/"""">\""""Video Processing with
+    OpenCV\""""</a></p>
 </li>
 </ul>
 <h4><strong>Tools</strong></h4>
 <ul>
 <li>
-<p><a href=""https://www.qgis.org/""><strong>QGIS</strong>: Desktop application for geospatial
+<p><a href=""""https://www.qgis.org/""""><strong>QGIS</strong>: Desktop application for geospatial
     analysis.</a></p>
 </li>
 <li>
-<p><a href=""https://ffmpeg.org/ffmpeg.html""><strong>FFmpeg</strong>: Command-line tool for video
+<p><a href=""""https://ffmpeg.org/ffmpeg.html""""><strong>FFmpeg</strong>: Command-line tool for video
     processing.</a></p>
 </li>
 <li>
-<p><a href=""https://www.audacityteam.org/"">Audacity: A tool for audio
+<p><a href=""""https://www.audacityteam.org/"""">Audacity: A tool for audio
     processing</a></p>
 </li>
 </ul>
 <h4><strong>Community and Support</strong></h4>
 <ul>
 <li>
-<p><a href=""https://www.kaggle.com/discussions?sort=hotness"">Kaggle Forums</a></p>
+<p><a href=""""https://www.kaggle.com/discussions?sort=hotness"""">Kaggle Forums</a></p>
 </li>
 <li>
-<p><a href=""https://github.com/opengeos/python-geospatial"">Geospatial Python
+<p><a href=""""https://github.com/opengeos/python-geospatial"""">Geospatial Python
     Community</a></p>
 </li>
 </ul>"
-ko-3,Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets,"Professional Skills,Intermediate",Beginner,Learn Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets in data science,"['Bias', 'Confusion Matrix', 'Dataset']",Model Evaluation and Deployment-Data Handling - Handling Imbalanced Datasets.md,"<p>Model Evaluation and Deployment: Handling Imbalanced Datasets</p>
+"ko-3","Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets","Professional Skills,Intermediate","Beginner","Learn Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets in data science","Bias; Confusion Matrix; Dataset","Model Evaluation and Deployment-Data Handling - Handling Imbalanced Datasets.md","<p>Model Evaluation and Deployment: Handling Imbalanced Datasets</p>
 <p><strong>Level-Intermediate</strong></p>
 <h3><strong>Overview</strong></h3>
 <p>Imbalanced datasets are prevalent in real-world machine learning
@@ -775,8 +678,8 @@ y_pred_proba)</p>
 <p>python</p>
 <p>Copy code</p>
 <p>import matplotlib.pyplot as plt\
-df[\'target\'].value_counts().plot(kind=\'bar\', title=\""Class
-Distribution\"")\
+df[\'target\'].value_counts().plot(kind=\'bar\', title=\""""Class
+Distribution\"""")\
 plt.show()</p>
 <ol>
 <li><strong>Exercise 2 (Moderate)</strong>: Apply SMOTE to balance a dataset and
@@ -861,3 +764,119 @@ print(classification_report(y_test, predictions))</p>
 </li>
 <li></li>
 </ul>"
+"ko-4","Using Sql With Time Series Data","Professional Skills,Intermediate","Beginner","Learn Using Sql With Time Series Data in data science","Data Analyst; Database; Data Scientist","Using SQL with Time Series Data.md","<h1><strong>Using SQL with Time Series Data</strong></h1>
+<h2><strong>Overview</strong></h2>
+<p>Time series data refers to data points collected or recorded at specific time intervals. Analyzing time series data is essential for understanding trends, patterns, and seasonal variations in various fields such as finance, healthcare, and marketing. SQL offers several features that allow analysts to efficiently query, manipulate, and aggregate time series data for forecasting, anomaly detection, and trend analysis. This topic explores how to work with time series data in SQL and apply it to solve real-world problems.</p>
+<hr />
+<h2><strong>Learning Objectives</strong></h2>
+<p>By the end of this module, learners will be able to:</p>
+<p>●   Understand the fundamentals of time series data and its unique challenges.<br />
+●   Use SQL to extract, filter, and transform time-based data for analysis.<br />
+●   Implement common time series analysis techniques such as rolling averages, period comparisons, and seasonal decomposition using SQL.<br />
+●   Work with different SQL functions to perform date and time-based operations (e.g., DATE_TRUNC, EXTRACT, and DATE_ADD).<br />
+●   Handle missing or irregular time series data using SQL techniques.<br />
+●   Apply SQL to perform trend analysis, forecasting, and anomaly detection on time series data.</p>
+<hr />
+<h2><strong>Prerequisites</strong></h2>
+<p>●   <strong>Basic SQL Knowledge</strong>: Familiarity with SQL syntax such as SELECT, WHERE, GROUP BY, and JOIN.<br />
+●   <strong>Intermediate SQL Skills</strong>: Understanding of aggregation functions (e.g., SUM, AVG) and the ability to filter data using conditions.<br />
+●   <strong>Date and Time Functions</strong>: Basic knowledge of date and time functions in SQL, such as DATE, DATETIME, and TIMESTAMP.<br />
+●   <strong>Data Analysis Concepts</strong>: Understanding of time series data and its characteristics, such as trends, seasonality, and noise.<br />
+●   <strong>Tools</strong>: Access to a SQL database management system or SQL environment like MySQL, PostgreSQL, or SQL Server.</p>
+<hr />
+<h2><strong>Key Concepts</strong></h2>
+<h3><strong>For Beginners</strong></h3>
+<p>●   <strong>What is Time Series Data?</strong><br />
+Time series data consists of data points that are indexed by time. It is typically collected at regular intervals (e.g., daily, monthly, or hourly) and represents trends or patterns over time.<br />
+●   <strong>Basic Date and Time Functions</strong><br />
+○   <strong>DATE_TRUNC</strong>: Truncates a timestamp to a specified date part (e.g., day, month, year).<br />
+○   <strong>EXTRACT</strong>: Extracts parts of a date or timestamp, such as year, month, day, etc.<br />
+○   <strong>DATE_ADD</strong>: Adds a specified interval (e.g., days, months) to a date.<br />
+○   <strong>Example</strong>: Aggregating sales data by month, using the EXTRACT function to pull out the month part of a timestamp.<br />
+●   <strong>Aggregating Time Series Data</strong><br />
+○   You can aggregate time series data by specific time periods such as year, month, or week. For example, you can calculate the total sales per month or the average temperature per year.</p>
+<h3><strong>For Intermediate Learners</strong></h3>
+<p>●   <strong>Rolling Averages and Moving Windows</strong><br />
+○   <strong>Moving Average</strong>: A statistical method used to smooth out fluctuations in time series data to identify trends.<br />
+○   <strong>Example</strong>: Use SQL to calculate a 7-day moving average for daily sales data using window functions.<br />
+○   <strong>Window Functions</strong>: Functions like <code>ROW_NUMBER()</code>, <code>RANK()</code>, <code>LEAD()</code>, and <code>LAG()</code> allow you to calculate cumulative totals, moving averages, and time-based differences.<br />
+●   <strong>Time-Based Filtering</strong><br />
+○   You can filter data by date or time intervals. For example, to analyze sales in a specific month, you can filter for records where the <code>timestamp</code> falls between the first and last day of that month.<br />
+○   <strong>Example</strong>: <code>SELECT * FROM sales WHERE EXTRACT(MONTH FROM order_date) = 5 AND EXTRACT(YEAR FROM order_date) = 2023;</code><br />
+●   <strong>Seasonality and Trends</strong><br />
+○   <strong>Seasonality</strong>: The recurring pattern in time series data that occurs at regular intervals (e.g., increased sales during holidays).<br />
+○   <strong>Trend</strong>: The long-term movement in time series data, either upward or downward.<br />
+○   <strong>Decomposition</strong>: You can decompose time series data into components like trend, seasonality, and noise using SQL-based methods, such as applying a moving average to remove short-term fluctuations.</p>
+<h3><strong>For Advanced Learners</strong></h3>
+<p>●   <strong>Advanced Time Series Techniques</strong><br />
+○   <strong>Seasonal Decomposition</strong>: Decompose time series data to separate trend, seasonal, and irregular components using SQL functions.<br />
+○   <strong>Time-Based JOINs</strong>: Use JOINs to combine time series data from different tables (e.g., join sales data with holiday data to analyze seasonal impacts).<br />
+○   <strong>Example</strong>: Perform a JOIN between sales and promotion data to analyze the effect of marketing campaigns on product sales over time.<br />
+●   <strong>Handling Missing Data in Time Series</strong><br />
+○   <strong>Filling Missing Values</strong>: Use SQL to identify gaps in time series data and fill them with interpolation, carry-forward, or backward filling.<br />
+○   <strong>Example</strong>: Use a LEFT JOIN with a table of expected time intervals to fill missing time periods in a time series dataset.<br />
+●   <strong>Forecasting and Anomaly Detection</strong><br />
+○   <strong>Exponential Smoothing</strong>: Use SQL to implement smoothing techniques to reduce noise in time series data.<br />
+○   <strong>Anomaly Detection</strong>: Identify outliers or unusual patterns in time series data.<br />
+○   <strong>SQL-Based Forecasting</strong>: Though SQL is not typically used for full-fledged forecasting, simple techniques like exponential smoothing or trend analysis can be implemented using SQL queries.<br />
+●   <strong>Performance Considerations with Time Series Data</strong><br />
+○   <strong>Indexes</strong>: Indexing on time-based columns (e.g., timestamp) can significantly improve query performance for time series analysis.<br />
+○   <strong>Partitioning</strong>: Large time series datasets can be partitioned by time intervals (e.g., by year, month, or day) for more efficient querying.<br />
+●   <strong>Case Study</strong>:<br />
+○   <strong>Stock Market Analysis</strong>: Analyze stock prices over time to identify trends and predict future price movements using SQL queries for time series analysis.<br />
+○   <strong>Weather Data</strong>: Use SQL to analyze weather patterns over the past decade, identifying seasonal trends and anomalies.</p>
+<hr />
+<h2><strong>Hands-On Practice</strong></h2>
+<ol>
+<li><strong>Beginner Task</strong>: Write a query to calculate the total sales per day, using the <code>DATE_TRUNC</code> function to group data by day.  </li>
+<li><strong>Intermediate Task</strong>: Write a query to calculate a 30-day moving average of stock prices using the <code>LAG()</code> window function.  </li>
+<li><strong>Advanced Project</strong>: Write a query that combines sales data with public holidays to analyze the impact of holidays on sales over a year. Use seasonal decomposition to identify trends and seasonality in the data.</li>
+</ol>
+<hr />
+<h2><strong>Additional Notes</strong></h2>
+<p>●   <strong>Common Misconceptions</strong><br />
+○   Time series data can only be analyzed with specialized tools like R or Python. While these tools offer advanced capabilities, SQL is an effective way to perform basic and intermediate time series analysis directly in a database.<br />
+○   Missing time series data always requires external tools to handle. SQL provides several ways to handle missing or irregular time series data directly within the query.<br />
+●   <strong>Tips</strong><br />
+○   Use window functions like <code>LAG()</code> and <code>LEAD()</code> to calculate time differences and trends in time series data.<br />
+○   Partition your time series data by time intervals (e.g., by month or year) to improve performance and simplify queries.<br />
+○   Regularly use the <code>EXPLAIN</code> statement to analyze and optimize the performance of time series queries, especially with large datasets.</p>
+<hr />
+<h2><strong>Additional Learning Paths</strong></h2>
+<p>●   <strong>Courses</strong>:<br />
+○   """"Time Series Analysis with SQL"""" on Udemy.<br />
+○   """"Advanced SQL for Data Analysts"""" on LinkedIn Learning.<br />
+●   <strong>Books</strong>:<br />
+○   <em>Data Science for Business</em> by Foster Provost and Tom Fawcett.<br />
+○   <em>Practical Time Series Forecasting</em> by Galit Shmueli and Kenneth C. Lichtendahl.<br />
+●   <strong>Certifications</strong>:<br />
+○   Microsoft Certified: Data Analyst Associate.<br />
+○   SAS Certified Data Scientist.</p>
+<hr />
+<h2><strong>Resources</strong></h2>
+<ol>
+<li><strong>Academic Papers</strong>: Research papers on time series analysis methods.  </li>
+<li><strong>Blog Posts</strong>: Articles on SQL techniques for time series forecasting and anomaly detection.  </li>
+<li><strong>Search Queries</strong>:</li>
+</ol>
+<p>○    """"SQL time series analysis methods.""""</p>
+<p>○    """"Handling missing data in time series SQL.""""</p>
+<p>○    """"Time series forecasting with SQL queries.""""</p>
+<ol>
+<li><strong>Open-Source Libraries</strong>: Time series analysis tools in SQL, such as PostgreSQL's <code>timescaledb</code> extension.</li>
+</ol>
+<hr />
+<h2><strong>Community and Support</strong></h2>
+<p>●   <strong>Online Forums</strong>:<br />
+○   <a href=""""https://stackoverflow.com/questions/tagged/sql"""">Stack Overflow</a> for SQL-related questions and discussions.<br />
+○   <a href=""""https://www.reddit.com/r/SQL/"""">Reddit SQL</a> for time series SQL analysis tips and queries.<br />
+●   <strong>Professional Networks</strong>:<br />
+○   LinkedIn groups focusing on SQL and time series data analysis.<br />
+○   Join SQL-focused Slack or Discord communities for peer-to-peer learning.</p>
+<hr />
+<h2><strong>Citations/References</strong></h2>
+<ol>
+<li>Shmueli, G., &amp; Lichtendahl, K. C. (2016). <em>Practical Time Series Forecasting</em>. Axelrod.  </li>
+<li>Provost, F., &amp; Fawcett, T. (2013). <em>Data Science for Business</em>. O'Reilly Media.  </li>
+<li>PostgreSQL Documentation: Time series data handling using <code>timescaledb</code>.</li>
+</ol>"
