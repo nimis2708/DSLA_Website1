@@ -115,7 +115,399 @@ Time series data consists of data points that are indexed by time. It is typical
 <li>Provost, F., &amp; Fawcett, T. (2013). <em>Data Science for Business</em>. O'Reilly Media.  </li>
 <li>PostgreSQL Documentation: Time series data handling using <code>timescaledb</code>.</li>
 </ol>"
-ko-2,Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets,"Professional Skills,Intermediate",Beginner,Learn Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets in data science,"['Bias', 'Confusion Matrix', 'Dataset']",Model Evaluation and Deployment-Data Handling - Handling Imbalanced Datasets.md,"<p>Model Evaluation and Deployment: Handling Imbalanced Datasets</p>
+ko-2,Data Types And Data Structures Handling Complex Data Types (Geospatial,"Professional Skills,Intermediate",Beginner,Learn Data Types And Data Structures Handling Complex Data Types (Geospatial in data science,"['Computer Vision', 'Python']",Data Types and Data Structures-Handling Complex Data Types (Geospatial.md,"<p><strong>Section:</strong> Data Types and Data Structures</p>
+<p>Handling Complex Data Types (Geospatial, Audio, Video)</p>
+<p><strong>Level</strong>: Intermediate</p>
+<h3><strong>Overview</strong></h3>
+<p>Complex data types such as geospatial, audio, and video data require
+specialized techniques for processing, analyzing, and extracting
+meaningful insights. Geospatial data includes geographic coordinates and
+maps, audio data involves sound waveforms, and video data is a sequence
+of image frames. Handling these data types is crucial for tasks in areas
+like location-based services, speech recognition, and video analytics.</p>
+<h3><strong>Learning Objectives</strong></h3>
+<p>By the end of this module, you will be able to:</p>
+<ul>
+<li>
+<p>Define geospatial, audio, and video data and understand their
+    structures.</p>
+</li>
+<li>
+<p>Explore tools and libraries for working with these data types.</p>
+</li>
+<li>
+<p>Learn the theoretical basis for processing complex data types.</p>
+</li>
+<li>
+<p>Apply preprocessing techniques for geospatial, audio, and video
+    data.</p>
+</li>
+</ul>
+<h3><strong>Prerequisites</strong></h3>
+<p>To fully engage with this material, you should have:</p>
+<ul>
+<li>
+<p>A basic understanding of Python programming.</p>
+</li>
+<li>
+<p>Familiarity with NumPy and Pandas for handling numerical data.</p>
+</li>
+<li>
+<p>Knowledge of image processing concepts (for video data).</p>
+</li>
+</ul>
+<h3><strong>Key Concepts</strong></h3>
+<h4><strong>1. Geospatial Data</strong></h4>
+<p><strong>Definition</strong>: Geospatial data includes geographic or location-based
+information, such as latitude-longitude coordinates, polygons, and
+raster images of maps.</p>
+<p><strong>Formats</strong>:</p>
+<ul>
+<li>
+<p><strong>Vector Data</strong>: Points, lines, and polygons representing geographic
+    features.</p>
+</li>
+<li>
+<p><strong>Raster Data</strong>: Grid-based data like satellite imagery or heatmaps.</p>
+</li>
+</ul>
+<p><strong>Libraries and Tools</strong>:</p>
+<ul>
+<li><strong>Geopandas</strong>: For handling geospatial data in Pandas-like
+    DataFrames.</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>import geopandas as gpd\
+gdf = gpd.read_file(\""world_countries.shp\"") # Load shapefile\
+gdf.plot() # Plot geographic data</p>
+<ul>
+<li>
+<p><strong>Shapely</strong>: For geometric operations like calculating distances or
+    intersections.</p>
+</li>
+<li>
+<p><strong>Folium</strong>: For creating interactive maps.</p>
+</li>
+</ul>
+<p><strong>Common Operations</strong>:</p>
+<ul>
+<li>
+<p>Reading and visualizing geospatial data (e.g., shapefiles, GeoJSON).</p>
+</li>
+<li>
+<p>Calculating distances between points.</p>
+</li>
+<li>
+<p>Overlaying data on maps.</p>
+</li>
+</ul>
+<p><strong>Use Cases</strong>:</p>
+<ul>
+<li>
+<p>Location-based services (e.g., ride-hailing apps).</p>
+</li>
+<li>
+<p>Environmental analysis (e.g., tracking deforestation).</p>
+</li>
+<li>
+<p>Urban planning and logistics optimization.</p>
+</li>
+</ul>
+<h4><strong>2. Audio Data</strong></h4>
+<p><strong>Definition</strong>: Audio data represents sound information, often stored as
+waveforms, spectrograms, or encoded files like MP3 or WAV.</p>
+<p><strong>Structure</strong>:</p>
+<ul>
+<li>
+<p><strong>Waveform</strong>: Time-series data representing sound pressure levels
+    over time.</p>
+</li>
+<li>
+<p><strong>Spectrogram</strong>: Visual representation of frequencies over time.</p>
+</li>
+</ul>
+<p><strong>Libraries and Tools</strong>:</p>
+<ul>
+<li><strong>Librosa</strong>: For loading, processing, and analyzing audio files.</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>import librosa\
+y, sr = librosa.load(\""audio_file.wav\"", sr=22050) # Load audio file\
+librosa.display.waveshow(y, sr=sr) # Plot waveform</p>
+<ul>
+<li>
+<p><strong>Soundfile</strong>: For reading and writing audio files.</p>
+</li>
+<li>
+<p><strong>PyDub</strong>: For audio manipulation like slicing and concatenation.</p>
+</li>
+</ul>
+<p><strong>Common Operations</strong>:</p>
+<ul>
+<li>
+<p>Noise reduction and filtering.</p>
+</li>
+<li>
+<p>Extracting features like MFCCs (Mel Frequency Cepstral
+    Coefficients).</p>
+</li>
+<li>
+<p>Converting audio to text using Automatic Speech Recognition (ASR).</p>
+</li>
+</ul>
+<p><strong>Use Cases</strong>:</p>
+<ul>
+<li>
+<p>Speech recognition (e.g., virtual assistants).</p>
+</li>
+<li>
+<p>Audio classification (e.g., identifying genres).</p>
+</li>
+<li>
+<p>Audio enhancement (e.g., noise suppression).</p>
+</li>
+</ul>
+<h4><strong>3. Video Data</strong></h4>
+<p><strong>Definition</strong>: Video data consists of sequences of frames (images)
+accompanied by audio (optional). Videos are often stored in formats like
+MP4, AVI, or MKV.</p>
+<p><strong>Structure</strong>:</p>
+<ul>
+<li>
+<p><strong>Frames</strong>: A sequence of images representing the visual content of
+    the video.</p>
+</li>
+<li>
+<p><strong>Metadata</strong>: Additional information, such as frame rate or
+    resolution.</p>
+</li>
+</ul>
+<p><strong>Libraries and Tools</strong>:</p>
+<ul>
+<li><strong>OpenCV</strong>: For reading, processing, and analyzing video frames.</li>
+</ul>
+<p>python</p>
+<p>Copy code</p>
+<p>import cv2\
+cap = cv2.VideoCapture(\""video_file.mp4\"")\
+while cap.isOpened():\
+ret, frame = cap.read()\
+if not ret:\
+break\
+cv2.imshow(\""Frame\"", frame)\
+if cv2.waitKey(1) &amp; 0xFF == ord(\'q\'):\
+break\
+cap.release()\
+cv2.destroyAllWindows()</p>
+<ul>
+<li>
+<p><strong>MoviePy</strong>: For video editing and processing.</p>
+</li>
+<li>
+<p><strong>FFmpeg</strong>: For video conversion and manipulation.</p>
+</li>
+</ul>
+<p><strong>Common Operations</strong>:</p>
+<ul>
+<li>
+<p>Extracting frames and keyframes.</p>
+</li>
+<li>
+<p>Object detection and tracking.</p>
+</li>
+<li>
+<p>Generating summaries or highlights from video.</p>
+</li>
+</ul>
+<p><strong>Use Cases</strong>:</p>
+<ul>
+<li>
+<p>Video surveillance (e.g., detecting unusual activities).</p>
+</li>
+<li>
+<p>Content recommendation (e.g., tagging scenes for streaming
+    platforms).</p>
+</li>
+<li>
+<p>Autonomous driving (e.g., lane detection).</p>
+</li>
+</ul>
+<h3><strong>Hands-On Practice</strong></h3>
+<ol>
+<li><strong>Exercise 1 (Geospatial)</strong>: Load and visualize a GeoJSON file.</li>
+</ol>
+<p>python</p>
+<p>Copy code</p>
+<p>import geopandas as gpd\
+gdf = gpd.read_file(\""data.geojson\"")\
+gdf.plot()</p>
+<ol>
+<li><strong>Exercise 2 (Audio)</strong>: Load an audio file, generate its
+    spectrogram, and extract features.</li>
+</ol>
+<p>python</p>
+<p>Copy code</p>
+<p>import librosa\
+import librosa.display\
+y, sr = librosa.load(\""audio.wav\"")\
+librosa.display.specshow(librosa.amplitude_to_db(librosa.stft(y),
+ref=np.max))</p>
+<ol>
+<li><strong>Exercise 3 (Video)</strong>: Extract frames from a video and save them as
+    images.</li>
+</ol>
+<p>python</p>
+<p>Copy code</p>
+<p>import cv2\
+cap = cv2.VideoCapture(\""video.mp4\"")\
+frame_count = 0\
+while cap.isOpened():\
+ret, frame = cap.read()\
+if not ret:\
+break\
+cv2.imwrite(f\""frame_{frame_count}.jpg\"", frame)\
+frame_count += 1\
+cap.release()</p>
+<ol>
+<li><strong>Exercise 4 (Challenging)</strong>: Combine geospatial data with video
+    frames to track an object's movement on a map.</li>
+</ol>
+<h3><strong>Quiz: Test Your Understanding</strong></h3>
+<ol>
+<li>
+<p><strong>Which library is commonly used for geospatial data manipulation?</strong></p>
+<p>a.  a) OpenCV</p>
+<p>b.  b) Librosa</p>
+<p>c.  c) GeoPandas</p>
+<p>d.  d) NumPy</p>
+</li>
+<li>
+<p><strong>True or False</strong>: Spectrograms are used to visualize video data.</p>
+</li>
+<li>
+<p><strong>What is a common format for storing audio data?</strong></p>
+<p>a.  a) MP4</p>
+<p>b.  b) WAV</p>
+<p>c.  c) JSON</p>
+<p>d.  d) PNG</p>
+</li>
+<li>
+<p><strong>Which operation is typically performed on video data?</strong></p>
+<p>a.  a) Keyframe extraction</p>
+<p>b.  b) Noise filtering</p>
+<p>c.  c) Distance calculation</p>
+<p>d.  d) Spectrogram generation</p>
+</li>
+<li>
+<p><strong>Which of the following best describes geospatial data?</strong></p>
+<p>a.  a) Sequence of images</p>
+<p>b.  b) Location-based data</p>
+<p>c.  c) Time-series data</p>
+<p>d.  d) Frequency data</p>
+</li>
+</ol>
+<h3><strong>Quiz Answers</strong></h3>
+<ol>
+<li>
+<p><strong>c) GeoPandas</strong></p>
+</li>
+<li>
+<p><strong>False</strong></p>
+</li>
+<li>
+<p><strong>b) WAV</strong></p>
+</li>
+<li>
+<p><strong>a) Keyframe extraction</strong></p>
+</li>
+<li>
+<p><strong>b) Location-based data</strong></p>
+</li>
+</ol>
+<h3><strong>Additional Learning Paths</strong></h3>
+<ul>
+<li>
+<p><strong>Advanced Geospatial Analysis</strong>: Learn about spatial joins,
+    geocoding, and advanced mapping techniques.</p>
+<ul>
+<li><em>Recommended Course</em>: \""Geospatial Data Analysis with Python\""
+    on DataCamp.</li>
+</ul>
+</li>
+<li>
+<p><strong>Audio Signal Processing</strong>: Explore advanced techniques like speech
+    synthesis, pitch detection, and audio classification.</p>
+<ul>
+<li><em>Recommended Resource</em>: <a href=""https://www.coursera.org/learn/audio-signal-processing"">\""Audio Signal Processing for Machine
+    Learning\""</a>
+    on Coursera.</li>
+</ul>
+</li>
+<li>
+<p><strong>Video Analytics</strong>: Delve into motion tracking, scene detection,
+    and deep learning for video data.</p>
+<ul>
+<li><em>Recommended Course</em>: \""Deep Learning for Computer Vision\"" on
+    Udemy.</li>
+</ul>
+</li>
+</ul>
+<h3><strong>Resources</strong></h3>
+<h4><strong>Documentation</strong></h4>
+<ul>
+<li>
+<p><a href=""https://geopandas.org/"">GeoPandas Documentation</a></p>
+</li>
+<li>
+<p><a href=""https://librosa.org/doc/latest/index.html"">Librosa Documentation</a></p>
+</li>
+<li>
+<p><a href=""https://docs.opencv.org/4.x/index.html"">OpenCV Documentation</a></p>
+</li>
+</ul>
+<h4><strong>Articles and Tutorials</strong></h4>
+<ul>
+<li>
+<p><a href=""https://www.datacamp.com/tutorial/geopandas-tutorial-geospatial-analysis?utm_source=google&amp;utm_medium=paid_search&amp;utm_campaignid=19589720824&amp;utm_adgroupid=157156376311&amp;utm_device=c&amp;utm_keyword=&amp;utm_matchtype=&amp;utm_network=g&amp;utm_adpostion=&amp;utm_creative=684592140434&amp;utm_targetid=dsa-2218886984100&amp;utm_loc_interest_ms=&amp;utm_loc_physical_ms=9061709&amp;utm_content=&amp;utm_campaign=230119_1-sea~dsa~tofu_2-b2c_3-row-p2_4-prc_5-na_6-na_7-le_8-pdsh-go_9-nb-e_10-na_11-na&amp;gad_source=1&amp;gclid=EAIaIQobChMIoeqWnu-SigMV5tYWBR0_bwssEAAYASAAEgJSsvD_BwE"">\""Introduction to Geospatial Data with
+    GeoPandas\""</a></p>
+</li>
+<li>
+<p><a href=""https://www.kdnuggets.com/2020/02/audio-data-analysis-deep-learning-python-part-1.html"">\""Audio Processing with
+    Python\""</a></p>
+</li>
+<li>
+<p><a href=""https://mpolinowski.github.io/docs/Development/Python/2022-09-17-python-video-processing/2022-09-17/"">\""Video Processing with
+    OpenCV\""</a></p>
+</li>
+</ul>
+<h4><strong>Tools</strong></h4>
+<ul>
+<li>
+<p><a href=""https://www.qgis.org/""><strong>QGIS</strong>: Desktop application for geospatial
+    analysis.</a></p>
+</li>
+<li>
+<p><a href=""https://ffmpeg.org/ffmpeg.html""><strong>FFmpeg</strong>: Command-line tool for video
+    processing.</a></p>
+</li>
+<li>
+<p><a href=""https://www.audacityteam.org/"">Audacity: A tool for audio
+    processing</a></p>
+</li>
+</ul>
+<h4><strong>Community and Support</strong></h4>
+<ul>
+<li>
+<p><a href=""https://www.kaggle.com/discussions?sort=hotness"">Kaggle Forums</a></p>
+</li>
+<li>
+<p><a href=""https://github.com/opengeos/python-geospatial"">Geospatial Python
+    Community</a></p>
+</li>
+</ul>"
+ko-3,Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets,"Professional Skills,Intermediate",Beginner,Learn Model Evaluation And Deployment Data Handling   Handling Imbalanced Datasets in data science,"['Bias', 'Confusion Matrix', 'Dataset']",Model Evaluation and Deployment-Data Handling - Handling Imbalanced Datasets.md,"<p>Model Evaluation and Deployment: Handling Imbalanced Datasets</p>
 <p><strong>Level-Intermediate</strong></p>
 <h3><strong>Overview</strong></h3>
 <p>Imbalanced datasets are prevalent in real-world machine learning
