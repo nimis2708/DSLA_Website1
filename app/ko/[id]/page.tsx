@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
+import fs from "fs";
+
 
 // Define the structure of each Knowledge Object
 type KnowledgeObject = {
