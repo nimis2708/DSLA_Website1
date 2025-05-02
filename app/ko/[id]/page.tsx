@@ -1,83 +1,68 @@
 import fs from "fs";
 import path from "path";
 import Papa from "papaparse";
-import mammoth from "mammoth";
 import { notFound } from "next/navigation";
 
 // Structure of each tile
-export type KnowledgeObject = {
+type KnowledgeObject = {
   id: string;
   title: string;
   section: string;
   level: string;
   overview: string;
   tags: string;
-  github_path: string;  // path to .docx or other
-  content: string;      // fallback HTML
+  github_path: string;
+  content: string;
 };
 
-// Load and parse CSV
+// Helper to load CSV and parse
 async function getData(): Promise<KnowledgeObject[]> {
-  const csvPath = path.join(process.cwd(), "public", "knowledge_objects.csv");
-  const raw = fs.readFileSync(csvPath, "utf8");
-  return Papa.parse<KnowledgeObject>(raw, { header: true, skipEmptyLines: true }).data;
-}
-
-// Convert a .docx on disk to HTML, preserving headings & bold
-async function convertDocxToHtml(filePath: string): Promise<string> {
-  const fileBuffer = fs.readFileSync(filePath);
-  const arr = new Uint8Array(fileBuffer);
-  // Map built-in Heading styles to real <h1>, <h2>,… and keep default mappings
-  const styleMap = [
-    "p[style-name='Heading 1'] => h1:fresh",
-    "p[style-name='Heading 2'] => h2:fresh",
-    "p[style-name='Heading 3'] => h3:fresh"
-  ];
-  const { value: html } = await mammoth.convertToHtml({
-    arrayBuffer: arr.buffer,
-    styleMap,
-    includeDefaultStyleMap: true // preserve default bold/italic mappings
+  const filePath = path.join(process.cwd(), "public", "knowledge_objects.csv");
+  const file = fs.readFileSync(filePath, "utf8");
+  const result = Papa.parse<KnowledgeObject>(file, {
+    header: true,
+    skipEmptyLines: true,
   });
-  return html;
+  return result.data;
 }
 
-export default async function KnowledgeDetailPage({ params }: { params: { id: string } }) {
+// This is your page for individual tile view
+export default async function KnowledgeDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const data = await getData();
-  const item = data.find(d => d.id === params.id);
+  const item = data.find((d) => d.id === params.id);
+
   if (!item) return notFound();
 
-  let htmlContent = item.content;
-  if (item.github_path.toLowerCase().endsWith('.docx')) {
-    const docxFullPath = path.join(process.cwd(), 'public', item.github_path);
-    htmlContent = await convertDocxToHtml(docxFullPath);
-  }
-
-  const tags = item.tags.split(',').map(t => t.trim()).filter(Boolean);
+  const tags = item.tags.split(",").map((t) => t.trim()).filter(Boolean);
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <a href="/explore" className="underline text-blue-600 mb-4 block">
-        ← Back to all Knowledge Objects
-      </a>
       <div className="bg-white shadow-md rounded p-6">
-        <h1 className="text-3xl font-bold mb-2">{item.title}</h1>
-        <p className="italic text-gray-600 mb-4">
+        <h2 className="text-3xl font-bold mb-2">{item.title}</h2>
+        <p className="text-gray-600 italic mb-4">
           Section: {item.section} • Level: {item.level}
         </p>
-        <p className="mb-4 text-gray-800">{item.overview}</p>
-        <div className="flex flex-wrap gap-2 mb-6">
-          {tags.map((tag, i) => (
+
+        <p className="text-gray-800 mb-4">{item.overview}</p>
+
+        <div className="flex flex-wrap gap-2 mb-4">
+          {tags.map((tag, idx) => (
             <span
-              key={i}
+              key={idx}
               className="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full"
             >
               {tag}
             </span>
           ))}
         </div>
+
         <div
-          className="prose prose-lg max-w-none"
-          dangerouslySetInnerHTML={{ __html: htmlContent }}
+          className="prose prose-sm sm:prose lg:prose-lg max-w-none"
+          dangerouslySetInnerHTML={{ __html: item.content }}
         />
       </div>
     </div>
