@@ -2,12 +2,26 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { Search } from "lucide-react";
 import Papa from "papaparse";
+import { Search } from "lucide-react";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
 
 interface KnowledgeObject {
   id: string;
@@ -29,28 +43,24 @@ export default function ExplorePage() {
     async function fetchData() {
       try {
         const response = await fetch("/knowledge_objects.csv");
-        const reader = response.body?.getReader();
-        const result = await reader?.read();
-        const decoder = new TextDecoder("utf-8");
-        const csv = decoder.decode(result?.value);
-        const parsed = Papa.parse(csv, { header: true });
-        
-        const data = parsed.data as unknown as any[];
+        const csv = await response.text();
+        const parsed = Papa.parse(csv, { header: true, skipEmptyLines: true });
+        const rawData = parsed.data as any[];
 
-        const processedData = data.map((item) => ({
+        const processedData = rawData.map((item) => ({
           id: item.id,
           title: item.title,
           section: item.section,
           level: item.level,
           overview: item.overview,
-          tags: typeof item.tags === "string"
-            ? item.tags
-                .replace(/^\[|\]$/g, "") // remove surrounding square brackets
-                .split(",")
-                .map((tag: string) => tag.replace(/^['"]|['"]$/g, "").trim()) // remove quotes and trim
-            : Array.isArray(item.tags)
-            ? item.tags
-            : [],
+          tags:
+            typeof item.tags === "string"
+              ? item.tags
+                  .replace(/^\[|\]$/g, "") // Remove brackets
+                  .split(",")
+                  .map((tag: string) => tag.replace(/^['"]|['"]$/g, "").trim())
+                  .filter(Boolean)
+              : [],
         })) as KnowledgeObject[];
 
         setKnowledgeObjects(processedData);
@@ -66,7 +76,7 @@ export default function ExplorePage() {
 
   const filteredKOs = knowledgeObjects.filter((ko) => {
     const matchesTitle = ko.title?.toLowerCase().includes(searchTitle.toLowerCase());
-    const matchesLevel = selectedLevel === "all" ? true : ko.level === selectedLevel;
+    const matchesLevel = selectedLevel === "all" || ko.level === selectedLevel;
     const matchesOverview = ko.overview?.toLowerCase().includes(searchOverview.toLowerCase());
     return matchesTitle && matchesLevel && matchesOverview;
   });
@@ -87,7 +97,9 @@ export default function ExplorePage() {
   return (
     <div className="container py-10">
       {loading ? (
-        <div className="text-center text-xl text-muted-foreground">Loading knowledge objects...</div>
+        <div className="text-center text-xl text-muted-foreground">
+          Loading knowledge objects...
+        </div>
       ) : (
         <div className="flex flex-col space-y-6">
           <div className="space-y-2">
@@ -99,7 +111,7 @@ export default function ExplorePage() {
             </p>
           </div>
 
-          {/* Search and Filters */}
+          {/* Filters */}
           <div className="grid gap-4 md:grid-cols-3">
             <div className="relative">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -131,7 +143,7 @@ export default function ExplorePage() {
             />
           </div>
 
-          {/* Knowledge Objects Grid */}
+          {/* Grid */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredKOs.map((ko) => (
               <Link href={`/ko/${ko.id}`} key={ko.id}>
