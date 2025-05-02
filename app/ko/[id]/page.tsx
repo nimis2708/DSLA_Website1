@@ -15,15 +15,20 @@ type KnowledgeObject = {
   content: string;
 };
 
-// Helper to load CSV and parse
+// Helper to load and parse CSV
 async function getData(): Promise<KnowledgeObject[]> {
-  const filePath = path.join(process.cwd(), "public", "knowledge_objects.csv");
-  const file = fs.readFileSync(filePath, "utf8");
-  const result = Papa.parse<KnowledgeObject>(file, {
-    header: true,
-    skipEmptyLines: true,
-  });
-  return result.data;
+  try {
+    const filePath = path.join(process.cwd(), "public", "knowledge_objects.csv");
+    const file = fs.readFileSync(filePath, "utf8");
+    const result = Papa.parse<KnowledgeObject>(file, {
+      header: true,
+      skipEmptyLines: true,
+    });
+    return result.data;
+  } catch (err) {
+    console.error("Error reading or parsing CSV:", err);
+    return [];
+  }
 }
 
 // This is your page for individual tile view
@@ -37,7 +42,12 @@ export default async function KnowledgeDetailPage({
 
   if (!item) return notFound();
 
-  const tags = item.tags.split(",").map((t) => t.trim()).filter(Boolean);
+  // Normalize tags: remove brackets/quotes and trim
+  const tags = item.tags
+    .replace(/^\[|\]$/g, "") // remove [ ]
+    .split(",")
+    .map((t) => t.replace(/^['"]|['"]$/g, "").trim()) // remove quotes
+    .filter(Boolean);
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
