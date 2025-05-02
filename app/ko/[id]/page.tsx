@@ -1,9 +1,9 @@
-import fs from "fs";
-import path from "path";
-import Papa from "papaparse";
-import { notFound } from "next/navigation";
+"use client";
 
-// Structure of each tile
+import React, { useEffect, useState } from "react";
+import Papa from "papaparse";
+
+// Define the structure of each Knowledge Object
 type KnowledgeObject = {
   id: string;
   title: string;
@@ -15,66 +15,56 @@ type KnowledgeObject = {
   content: string;
 };
 
-// Helper to load and parse CSV
-async function getData(): Promise<KnowledgeObject[]> {
-  try {
-    const filePath = path.join(process.cwd(), "public", "knowledge_objects.csv");
-    const file = fs.readFileSync(filePath, "utf8");
-    const result = Papa.parse<KnowledgeObject>(file, {
-      header: true,
-      skipEmptyLines: true,
-    });
-    return result.data;
-  } catch (err) {
-    console.error("Error reading or parsing CSV:", err);
-    return [];
-  }
-}
+export default function Page5() {
+  const [data, setData] = useState<KnowledgeObject[]>([]);
+  const [selectedTile, setSelectedTile] = useState<KnowledgeObject | null>(null);
 
-// This is your page for individual tile view
-export default async function KnowledgeDetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const data = await getData();
-  const item = data.find((d) => d.id === params.id);
-
-  if (!item) return notFound();
-
-  // Normalize tags: remove brackets/quotes and trim
-  const tags = item.tags
-    .replace(/^\[|\]$/g, "") // remove [ ]
-    .split(",")
-    .map((t) => t.replace(/^['"]|['"]$/g, "").trim()) // remove quotes
-    .filter(Boolean);
+  // Load and parse CSV on component mount
+  useEffect(() => {
+    fetch("/knowledge_objects.csv")
+      .then((response) => response.text())
+      .then((csvText) => {
+        Papa.parse<KnowledgeObject>(csvText, {
+          header: true,
+          skipEmptyLines: true,
+          complete: (results) => {
+            setData(results.data);
+          },
+        });
+      });
+  }, []);
 
   return (
-    <div className="p-6 max-w-5xl mx-auto">
-      <div className="bg-white shadow-md rounded p-6">
-        <h2 className="text-3xl font-bold mb-2">{item.title}</h2>
-        <p className="text-gray-600 italic mb-4">
-          Section: {item.section} • Level: {item.level}
-        </p>
+    <div className="p-6 max-w-7xl mx-auto">
+      <h1 className="text-3xl font-bold mb-6">Knowledge Objects</h1>
 
-        <p className="text-gray-800 mb-4">{item.overview}</p>
-
-        <div className="flex flex-wrap gap-2 mb-4">
-          {tags.map((tag, idx) => (
-            <span
-              key={idx}
-              className="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div
-          className="prose prose-sm sm:prose lg:prose-lg max-w-none"
-          dangerouslySetInnerHTML={{ __html: item.content }}
-        />
+      {/* Grid of KO Tiles */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {data.map((tile) => (
+          <div
+            key={tile.id}
+            onClick={() => setSelectedTile(tile)}
+            className="cursor-pointer p-4 border rounded shadow hover:bg-gray-100 transition"
+          >
+            <h2 className="text-xl font-semibold">{tile.title}</h2>
+            <p className="text-sm text-gray-600">{tile.overview}</p>
+          </div>
+        ))}
       </div>
+
+      {/* Selected Tile Detail View */}
+      {selectedTile && (
+        <div className="mt-10 p-6 border rounded bg-white shadow-md">
+          <h2 className="text-2xl font-bold mb-2">{selectedTile.title}</h2>
+          <p className="text-gray-700 mb-4">{selectedTile.overview}</p>
+
+          {/* Rich HTML Content from CSV */}
+          <div
+            className="prose prose-sm sm:prose lg:prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: selectedTile.content }}
+          />
+        </div>
+      )}
     </div>
   );
 }
